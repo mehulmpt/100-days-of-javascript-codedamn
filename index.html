@@ -1,40 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="main-container">
-        <div class="container top">
-            <h1>Weather App</h1>
-            <form action="" onsubmit="return false">
-                <input type="text" class="search" placeholder="Search by city name">
-                <button type="submit" class="btn">Submit</button>
-                <p class="error"></p>
-            </form>
-            <section>
-                <div class="container">
-                    <div class="icon">
-                        <img src="" alt="" class="weather-icon">
-                    </div>
-                    <div class="location">
-                        <div class="city">New York, US</div>
-                        <div class="date">Thursday, Dec 26 2020</div>
-                    </div>
-                    <div class="current">
-                        <div class="temp">Temp: 25 <span>°C</span></div>
-                        <div class="weather">Weather: Sunny</div>
-                        <div class="temp-range">Temp Range: 10°C / 15°C</div>
-                    </div>
-                </div>
-            </section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/1935d064dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row box">
+        <div class="col-md-6">
+          <h1 class="text-center py-3 bg-primary text-light">
+            Speech To Text Project
+          </h1>
+          <form action="" id="search-form">
+            <textarea
+              id="search-input"
+              cols="30"
+              rows="5"
+              class="form-control fs-3"
+            ></textarea>
+            <div
+              id="speech-btn"
+              class="speech-btn pt-1 d-flex justify-content-between align-items-center"
+            >
+              <p class="instruction fs-5">Click the Mic icon to start</p>
+              <button class="btn btn-danger">
+                <i class="fas fa-microphone"></i>
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-    
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
