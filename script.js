@@ -1,46 +1,32 @@
-const cardNumber = document.querySelector("#number");
-const cardValidity = document.querySelector("#valid");
-const cardCvv = document.querySelector("#cvv");
+const input = document.querySelector("textarea");
+const btn = document.querySelector(".btn");
+const limit = document.querySelector(".limit");
+let max = 50;
 
-cardNumber.addEventListener("input", formatCardNumber);
-cardValidity.addEventListener("input", formatCardValidity);
-cardCvv.addEventListener("input", formatCvv);
+const updateLimit = () => {
+  limit.textContent = max;
+  input.addEventListener("input", () => {
+    let inputLength = input.value.length;
+    limit.textContent = max - inputLength;
+    if (inputLength > max) {
+      btn.disabled = true;
+      limit.style.color = "red";
+    } else {
+      btn.disabled = false;
+      limit.style.color = "black";
+    }
+  });
+};
 
-function formatCardNumber(e) {
-  cardNumber.maxLength = "19";
-  e.target.value = e.target.value
-    .replace(/[^\dA-Z]/g, "")
-    .replace(/[^\da-z]/g, "")
-    .replace(/(.{4})/g, "$1 ")
-    .trim();
-  if (cardNumber.value.length == 19) {
-    formatCardValidity();
-  }
-}
+updateLimit();
 
-// Format Validity
-function formatCardValidity(e) {
-  cardValidity.focus();
-  cardValidity.maxLength = "5";
+// Tweet Function
+btn.addEventListener("click", (e) => {
+  e.preventDefault();
+  tweet();
+});
 
-  if (cardValidity.value.length < 5) {
-    cardValidity.value = cardValidity.value
-      .replace(/[^\dA-Z]/g, "")
-      .replace(/[^\da-z]/g, "")
-      .replace(/(.{2})/g, "$1/")
-      .trim();
-  }
-  if (cardValidity.value.length == 5) {
-    formatCvv();
-  }
-}
-
-// Format CVV
-function formatCvv() {
-  cardCvv.focus();
-  cardCvv.maxLength = "3";
-  cardCvv.value = cardCvv.value
-    .replace(/[^\dA-Z]/g, "")
-    .replace(/[^\da-z]/g, "")
-    .trim();
-}
+const tweet = () => {
+  const tweetInput = "https://twitter.com/intent/tweet?text=";
+  window.open(`${tweetInput}${input.value}`);
+};
