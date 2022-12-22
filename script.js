@@ -1,36 +1,29 @@
-const searchIcon = document.querySelector(".fa-search");
-const closeIcon = document.querySelector(".fa-times");
-const searchEl = document.querySelector(".search");
-const searchInput = document.querySelector(".search input");
+// http://api.icndb.com/jokes/random
 
-searchIcon.addEventListener("click", () => {
-  searchIcon.style.transform = "translateY(200%)";
-  closeIcon.style.transform = "translateY(0)";
-  showSearchEl();
-});
+const joke = document.querySelector(".joke");
+const btn = document.querySelector(".btn");
+const url = "http://api.icndb.com/jokes/random";
 
-closeIcon.addEventListener("click", () => {
-  searchIcon.style.transform = "translateY(0)";
-  closeIcon.style.transform = "translateY(-200%)";
-  hideSearchEl();
-});
+btn.addEventListener("click", getJoke);
 
-function showSearchEl() {
-  searchEl.style.transform = "translateX(0)";
-  setTimeout(() => {
-    searchEl.style.width = "30rem";
-  }, 1000);
-  setTimeout(() => {
-    searchInput.setAttribute("placeholder", "Search...");
-  }, 2000);
-}
+// function getJoke() {
+//   fetch(url)
+//     .then((response) => {
+//       return response.json();
+//     })
+//     .then((data) => {
+//       console.log(data);
+//       joke.innerHTML = data.value.joke;
+//     });
+// }
 
-function hideSearchEl() {
-  searchInput.setAttribute("placeholder", "");
-  setTimeout(() => {
-    searchEl.style.width = "4.5rem";
-  }, 1000);
-  setTimeout(() => {
-    searchEl.style.transform = "translateX(200%)";
-  }, 2000);
+async function getJoke() {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    joke.innerHTML = data.value.joke;
+    //   console.log(data);
+  } catch (error) {
+    joke.innerHTML = error.message;
+  }
 }
