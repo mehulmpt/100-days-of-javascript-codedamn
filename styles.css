@@ -7,8 +7,8 @@
   --light-blue: #005490;
   --color-primary: #9d0191;
   --color-sec: #db6400;
-  --grey: #eee;
-  --dark-grey: #222831;
+  --color-grey: #eee;
+  --color-dark-grey: #222831;
 }
 
 * {
@@ -38,4 +38,57 @@ img {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 20px;
+}
+/* Start here */
+section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  padding: 1rem 0;
+  color: var(--color-primary);
+}
+.accordion {
+  background-color: var(--color-grey);
+  color: var(--black);
+  cursor: pointer;
+  padding: 1.6rem;
+  width: 100%;
+  border-bottom: 1px solid var(--color-primary);
+  font-size: 1.5rem;
+  transition: all 0.4s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.active,
+.accordion:hover {
+  background-color: #d5d5d5;
+}
+
+.accordion::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f067";
+  color: var(--color-primary);
+}
+
+.active::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f068";
+  color: var(--color-primary);
+}
+
+.desc {
+  padding: 0 1rem;
+  background-color: var(--white);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease;
 }
