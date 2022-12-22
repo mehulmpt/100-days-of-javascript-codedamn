@@ -1,61 +1,39 @@
-const btn = document.querySelector(".get-quotes");
-btn.addEventListener("click", getQuotes);
-const number = document.getElementById("number");
+// LOAD ALL USERS
 
-function getQuotes(e) {
+const btn = document.getElementById("btn");
+btn.addEventListener("click", getUsers);
+
+// CREATE FUNCTION GETUSERS
+function getUsers(e) {
     e.preventDefault();
-    if (number.value.length == 0) {
-        return alert("Plese enter a number");
-    } else {
-        const https = new XMLHttpRequest();
-    https.open("GET", "https://type.fit/api/quotes", true);
-    https.onload = function() {
+
+    const http = new XMLHttpRequest();
+
+    http.open("GET", "users.json", true);
+
+    http.onload = function() {
         if (this.status === 200) {
             // console.log(this.responseText);
 
-            const response = shuffle(JSON.parse(this.responseText));
+            const users = JSON.parse(this.responseText);
 
             let output = "";
-            // response.forEach(function(quote) {
-            //     output += `
-            //         <li>Quote: ${quote.text}</li>
-            //         <li>Author: ${quote.author}</li>
-            //         <hr>
-            //     `;
-            // })
-
-            for (let i = 0; i < response.length; i++) {
-                if (i == number.value) {break;}
+            users.forEach(function(user) {
                 output += `
-                    <li>Quote: ${response[i].text}</li>
-                    <li>Author: ${response[i].author}</li>
-                   <hr>
-               `;
-            }
+                    <hr>
+                    <ul>
+                        <li>ID: ${user.id}</li>
+                        <li>Name: ${user.name}</li>
+                        <li>Age: ${user.age}</li>
+                        <li>Email: ${user.email}</li>
+                    </ul>
+                `;
+            })
 
-            document.querySelector(".quotes").innerHTML = output;
+            document.getElementById("users").innerHTML = output;
+
         }
     }
-    https.send();
-    }
 
-
-}
-
-//  FUNCTION TO SHUFFLE QUOTES
-
-function shuffle(quotes) {
-    let CI = quotes.length, tempValue, randomIndex;
-
-    // While elements exist in the array
-    while (CI > 0) {
-        randomIndex = Math.floor(Math.random() * CI);
-        // DECREASE CI BY 1
-        CI--;
-        // SWAP THE LAST ELEMENT WITH CI
-        tempValue = quotes[CI];
-        quotes[CI] = quotes[randomIndex];
-        quotes[randomIndex] = tempValue;
-    }
-    return quotes;
+    http.send();
 }
