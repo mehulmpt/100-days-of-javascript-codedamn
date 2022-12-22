@@ -27,6 +27,7 @@ class ShowAlert {
       alertBox.classList.remove("show");
       alertBox.classList.add("hide");
     }, 5000);
+    start();
     closeBtn.addEventListener("click", () => {
       alertBox.classList.remove("show");
       alertBox.classList.add("hide");
@@ -44,3 +45,20 @@ main.addEventListener("click", (e) => {
     warning.trigger("Alert: This is a Warning alert!");
   }
 });
+
+// Progress Bar
+function start() {
+  const progress = document.querySelector(".progress");
+  let width = 0;
+  const timeInterval = setInterval(fill, 50); // Divide ShowAlert setTimeout value by 100
+
+  function fill() {
+    if (width >= 100) {
+      clearInterval(timeInterval);
+    } else {
+      width++;
+      progress.style.width = width + "%";
+      // progress.innerHTML = width + "%";
+    }
+  }
+}

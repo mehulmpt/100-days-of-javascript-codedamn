@@ -152,3 +152,19 @@ img {
   color: #721c24;
   font-size: 2rem;
 }
+
+/* Adding Proress bar css */
+.progress-bar {
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress {
+  width: 0%;
+  height: 3px;
+  line-height: 3px;
+  background-color: var(--color-primary);
+}
