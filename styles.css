@@ -7,8 +7,8 @@
   --light-blue: #005490;
   --color-primary: #9d0191;
   --color-sec: #db6400;
-  --grey: #eee;
-  --dark-grey: #222831;
+  --color-grey: #eee;
+  --color-dark-grey: #222831;
 }
 
 * {
@@ -23,7 +23,6 @@ html {
 
 body {
   font-family: "Open Sans", sans-serif;
-  background-color: var(--blue);
 }
 
 p {
@@ -32,7 +31,7 @@ p {
 }
 
 img {
-  width: 100%;
+  width: 10%;
 }
 
 .container {
@@ -41,78 +40,162 @@ img {
   padding: 0 20px;
 }
 
-/* Start */
+/* Start Here */
+body {
+  background: var(--color-grey);
+}
+
 .box {
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-.calc {
-  width: 30rem;
-  height: 35rem;
-  margin: 0 auto;
-  background-color: var(--grey);
-  padding: 1.5rem;
-  border-radius: 3px;
+.payment {
+  width: 35rem;
+  border-radius: 5px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem;
+  background: var(--white);
+}
+
+.header h1 {
+  font-size: 3rem;
+  color: orange;
+}
+.header p {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.content {
+  padding: 1.5rem 3rem;
+  background: rgb(255, 244, 214);
+}
+.amount {
+  margin-bottom: 2rem;
+}
+
+.amount p {
+  font-size: 1.2rem;
+}
+
+.amount p span {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.card-details {
+  background: var(--white);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border: 1px solid #ccc;
+}
+
+.card-details > * {
+  padding: 1rem;
+  width: inherit;
+}
+
+.number {
+  grid-column: 1/3;
+  border-bottom: 1px solid #ccc;
   position: relative;
 }
 
-.result {
-  color: var(--dark-grey);
-  background-color: var(--white);
-  height: 4.5rem;
-  width: 70%;
-  border-radius: 3px;
-  margin-bottom: 5px;
-  border: 2px solid var(--color-sec);
-  padding: 1rem;
-  overflow: hidden;
+.valid {
+  width: 100%;
+  border-right: 1px solid #ccc;
 }
 
-.clear {
-  width: 20%;
-  height: 4.5rem;
-  background-color: red;
-  padding: 1rem;
+.cvv {
+  width: 100%;
+  position: relative;
+}
+
+label {
+  display: block;
+  text-transform: uppercase;
+  padding-bottom: 3px;
+}
+
+.number img {
   position: absolute;
-  right: 2rem;
-  top: 1.6rem;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+}
+
+input {
+  border: none;
+  outline: none;
+  font-size: 1.3rem;
+}
+
+::placeholder {
+  font-size: 1.3rem;
+  color: #ccc;
+}
+
+.valid input,
+.cvv input {
+  width: 50%;
+}
+
+.cvv span {
+  position: absolute;
+  right: 5px;
+  top: 9px;
+  font-size: 9px;
+  cursor: pointer;
+}
+.remember {
+  display: flex;
+  padding: 1.5rem 0;
+  align-items: center;
+}
+.remember input {
+  margin-right: 5px;
+}
+
+.button {
+  width: 100%;
+  position: relative;
+}
+
+.btn {
+  width: 100%;
+  padding: 1.3rem 0;
+  background: orange;
+  border: none;
+  outline: none;
   border-radius: 3px;
   color: var(--white);
+  font-weight: 600;
   cursor: pointer;
-  text-align: center;
-  font-size: 1.6rem;
 }
-
-.keys {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 5px;
-  font-size: 1.6rem;
+.button i {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--white);
+  font-size: 1.5rem;
 }
-
-.keys li {
-  list-style: none;
-  width: 5rem;
-  background-color: var(--white);
-  margin: 1rem 0.5rem;
-  padding: 1rem;
-  border-bottom: 1px solid var(--color-primary);
+.secure {
+  margin: 2rem 0;
+  background: black;
+  padding: 4px 1rem;
+  color: orange;
   border-radius: 3px;
-  color: var(--dark-grey);
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.1s;
-}
-
-.keys li:hover {
-  background-color: var(--color-primary);
-  color: var(--white);
-}
-
-.keys .equals {
-  background-color: orangered;
-  color: var(--white);
+  text-transform: uppercase;
 }

@@ -1,31 +1,46 @@
-const keys = document.getElementsByTagName("li");
-const result = document.querySelector("p");
-const clear = document.querySelector(".clear");
+const cardNumber = document.querySelector("#number");
+const cardValidity = document.querySelector("#valid");
+const cardCvv = document.querySelector("#cvv");
 
-for (let i = 0; i < keys.length; i++) {
-  if (keys[i].innerHTML === "=") {
-    keys[i].addEventListener("click", calculate);
-  } else {
-    keys[i].addEventListener("click", addToCurrentValue(i));
+cardNumber.addEventListener("input", formatCardNumber);
+cardValidity.addEventListener("input", formatCardValidity);
+cardCvv.addEventListener("input", formatCvv);
+
+function formatCardNumber(e) {
+  cardNumber.maxLength = "19";
+  e.target.value = e.target.value
+    .replace(/[^\dA-Z]/g, "")
+    .replace(/[^\da-z]/g, "")
+    .replace(/(.{4})/g, "$1 ")
+    .trim();
+  if (cardNumber.value.length == 19) {
+    formatCardValidity();
   }
 }
 
-function addToCurrentValue(i) {
-  return () => {
-    if (keys[i].innerHTML === "÷") {
-      result.innerHTML += "/";
-    } else if (keys[i].innerHTML === "x") {
-      result.innerHTML += "*";
-    } else {
-      result.innerHTML += keys[i].innerHTML;
-    }
-  };
+// Format Validity
+function formatCardValidity(e) {
+  cardValidity.focus();
+  cardValidity.maxLength = "5";
+
+  if (cardValidity.value.length < 5) {
+    cardValidity.value = cardValidity.value
+      .replace(/[^\dA-Z]/g, "")
+      .replace(/[^\da-z]/g, "")
+      .replace(/(.{2})/g, "$1/")
+      .trim();
+  }
+  if (cardValidity.value.length == 5) {
+    formatCvv();
+  }
 }
 
-function calculate() {
-  return (result.innerHTML = eval(result.innerHTML));
+// Format CVV
+function formatCvv() {
+  cardCvv.focus();
+  cardCvv.maxLength = "3";
+  cardCvv.value = cardCvv.value
+    .replace(/[^\dA-Z]/g, "")
+    .replace(/[^\da-z]/g, "")
+    .trim();
 }
-
-clear.addEventListener("click", () => {
-  result.innerHTML = "";
-});
