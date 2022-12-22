@@ -1,29 +1,18 @@
-const keys = document.querySelectorAll(".key");
-const note = document.querySelector(".key-pressed");
+const galleryFilter = document.querySelector(".gallery-filter");
+const galleryImages = document.querySelectorAll(".image");
 
-window.addEventListener("keydown", playNote);
+galleryFilter.addEventListener("click", (e) => {
+  if (e.target.classList.contains("filter-gallery")) {
+    galleryFilter.querySelector(".active").classList.remove("active");
+    e.target.classList.add("active");
 
-function playNote(e) {
-  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-  const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-
-  if (!key) return;
-
-  const keyNote = key.dataset.note;
-  //   console.log(keyNote);
-
-  key.classList.add("playing");
-  note.innerHTML = keyNote;
-  audio.currentTime = 0;
-  audio.play();
-}
-
-// Remove playing class
-keys.forEach((key) => {
-  key.addEventListener("transitionend", removeTransition);
+    const filter = e.target.dataset.filter;
+    galleryImages.forEach((image) => {
+      if (filter === "all" || image.classList.contains(filter)) {
+        image.style.display = "block";
+      } else {
+        image.style.display = "none";
+      }
+    });
+  }
 });
-
-function removeTransition(e) {
-  if (e.propertyName !== "transform") return;
-  this.classList.remove("playing");
-}
