@@ -1,17 +1,28 @@
-const btn = document.querySelector(".btn");
-const coupon = document.querySelector(".coupon");
+const counters = document.querySelectorAll(".counter");
 
-const copyText = (e) => {
-  e.preventDefault();
+counters.forEach((counter) => {
+  counter.innerText = 0;
 
-  coupon.select();
-  coupon.setSelectionRange(0, 999999);
-  document.execCommand("copy");
+  function updateCounter() {
+    const target = +counter.dataset.target;
+    const count = +counter.innerText;
+    const increment = target / 200; //Count timing
 
-  btn.textContent = "Copied!!!";
-  setTimeout(() => {
-    btn.textContent = "Copy";
-  }, 3000);
-};
-
-btn.addEventListener("click", copyText);
+    if (count < target) {
+      counter.innerText = `${Math.ceil(count + increment)}`;
+      setTimeout(updateCounter, 10);
+    } else {
+      counter.innerText = target;
+    }
+  }
+  //   updateCounter();
+  window.addEventListener("scroll", () => {
+    const scrollHeight = window.pageYOffset;
+    const sectionTop = document.querySelector(".top");
+    const sectionTopHeight = sectionTop.clientHeight;
+    console.log(sectionTopHeight);
+    if (scrollHeight >= sectionTopHeight - 1) {
+      updateCounter();
+    }
+  });
+});

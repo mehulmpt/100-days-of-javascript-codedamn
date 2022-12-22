@@ -18,12 +18,11 @@
 }
 
 html {
-  /* font-size: 10px; */
+  font-size: 10px;
 }
 
 body {
   font-family: "Open Sans", sans-serif;
-  background-color: var(--light-blue);
 }
 
 p {
@@ -41,6 +40,78 @@ img {
   padding: 0 20px;
 }
 
-.box {
+/* Start Here */
+section.top {
+  width: 100%;
+  height: 90vh;
+  text-align: center;
+  margin: auto;
+}
+
+.top-content {
+  width: 80%;
+}
+.top-content > * {
+  margin-bottom: 2rem;
+}
+
+.top h1 {
+  font-size: 3rem;
+  padding: 1rem 0;
+}
+
+.top img {
+  width: 70%;
+}
+
+.btn {
+  padding: 1rem;
+  background-color: var(--color-primary);
+  color: var(--white);
+  border: none;
+  border-radius: 3px;
+  outline: none;
+}
+
+section.main {
   height: 100vh;
+  background: url(./images/bg.jpg) center no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+section.main::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.counter-box {
+  width: 33%;
+  text-align: center;
+  color: var(--white);
+  z-index: 1;
+}
+
+.counter-box > * {
+  margin-bottom: 1rem;
+}
+
+.counter-box i,
+.counter-box .counter {
+  font-size: 4rem;
+}
+
+.counter-box span {
+  font-size: 2rem;
 }
