@@ -1,22 +1,13 @@
-// SCROLL TO TOP
-const scrollBtn = document.querySelector(".top");
-const rootEl = document.documentElement;
+const links = document.querySelectorAll(".nav-list li a");
 
-document.addEventListener("scroll", showBtn);
-scrollBtn.addEventListener("click", scrollToTop);
-
-function showBtn() {
-  const scrollTotal = rootEl.scrollHeight - rootEl.clientHeight;
-  if (rootEl.scrollTop / scrollTotal > 0.3) {
-    scrollBtn.classList.add("show-btn");
-  } else {
-    scrollBtn.classList.remove("show-btn");
-  }
+for (link of links) {
+  link.addEventListener("click", smoothScroll);
 }
 
-function scrollToTop() {
-  rootEl.scrollTo({
-    top: 0,
+function smoothScroll(e) {
+  e.preventDefault();
+  const href = this.getAttribute("href");
+  document.querySelector(href).scrollIntoView({
     behavior: "smooth",
   });
 }
