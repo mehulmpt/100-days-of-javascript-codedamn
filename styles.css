@@ -7,8 +7,8 @@
   --light-blue: #005490;
   --color-primary: #9d0191;
   --color-sec: #db6400;
-  --color-grey: #eee;
-  --color-dark-grey: #222831;
+  --grey: #eee;
+  --dark-grey: #222831;
 }
 
 * {
@@ -18,11 +18,12 @@
 }
 
 html {
-  font-size: 10px;
+  /* font-size: 10px; */
 }
 
 body {
   font-family: "Open Sans", sans-serif;
+  background-color: var(--light-blue);
 }
 
 p {
@@ -40,11 +41,6 @@ img {
   padding: 0 20px;
 }
 
-/* Start Here */
 .box {
-  width: 100%;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
