@@ -11,39 +11,27 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <section class="top">
-      <div class="container top-content">
-        <h1>Welcome to ZinoTrust</h1>
-        <img src="images/girl.svg" alt="" />
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At rem quo
-          iure odio dolorem nulla sapiente natus quia aspernatur! Quam?
-        </p>
-        <button class="btn">Get Started</button>
-      </div>
-    </section>
-
-    <section class="main">
-      <div class="container box">
-        <div class="counter-box">
-          <i class="fas fa-users-cog"></i>
-          <div class="counter" data-target="40">40</div>
-          <span>Our Team Members</span>
-        </div>
-
-        <div class="counter-box">
-          <i class="fas fa-users"></i>
-          <div class="counter" data-target="1000">40</div>
-          <span>Happy Customers</span>
-        </div>
-
-        <div class="counter-box">
-          <i class="fas fa-globe-africa"></i>
-          <div class="counter" data-target="14">40</div>
-          <span>Countries Reached</span>
+    <div class="container">
+      <div class="counter-div">
+        <h1>Counter App</h1>
+        <span class="count">0</span>
+        <hr />
+        <div class="buttons">
+          <button class="subtract">
+            <i class="fas fa-arrow-down subtract"></i>
+            Subtract
+          </button>
+          <button class="reset">
+            <i class="fas fa-spinner reset"></i>
+            Reset
+          </button>
+          <button class="add">
+            <i class="fas fa-arrow-up add"></i>
+            Add
+          </button>
         </div>
       </div>
-    </section>
+    </div>
 
     <script src="script.js"></script>
   </body>
