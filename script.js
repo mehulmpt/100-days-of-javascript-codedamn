@@ -1,40 +1,67 @@
-// console.log(window);
+const form = document.getElementById("form");
+const search = document.getElementById("search");
+const result = document.getElementById("result");
 
-// console.log(Object.getOwnPropertyNames(window));
+const apiURL = "https://api.lyrics.ovh";
 
-// LOCAL STORAGE METHODS
-// setItem(): Add key and value to localStorage
-// getItem(): This is how you get items from localStorage
-// removeItem(): Remove an item by key from localStorage
-// clear(): Clear all localStorage
-// key(): Passed a number to retrieve the key of a localStorage
+// Get Search Value
+form.addEventListener("submit", e => {
+    e.preventDefault();
+    searchValue = search.value.trim();
 
-// window.localStorage.setItem("key", "value");
+    if (!searchValue) {
+        alert("Nothing to search");
+    } else {
+        beginSearch(searchValue);
+    }
+})
 
-window.localStorage.setItem("firstName", "Zino");
-localStorage.setItem("lastName", "Akpareva");
+// Search function
+async function beginSearch(searchValue) {
+    const searchResult = await fetch(`${apiURL}/suggest/${searchValue}`);
+    const data = await searchResult.json();
 
-const person = {
-  fullName: "Akpareva Zino",
-  location: "Abuja",
-};
+    displayData(data);
+}
 
-localStorage.setItem("user", JSON.stringify(person));
+// Display Search Result
+function displayData(data) {
+    result.innerHTML = `
+    <ul class="songs">
+      ${data.data
+        .map(song=> `<li>
+                    <div>
+                        <strong>${song.artist.name}</strong> -${song.title} 
+                    </div>
+                    <span data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</span>
+                </li>`
+        )
+        .join('')}
+    </ul>
+  `;
+}
 
-const fruits = ["Pineapple", "Mango", "Pawpaw"];
+//event listener in get lyrics button
+result.addEventListener('click', e=>{
+    const clickedElement = e.target;
 
-localStorage.setItem("fruits", JSON.stringify(fruits));
+    //checking clicked elemet is button or not
+    if (clickedElement.tagName === 'SPAN'){
+        const artist = clickedElement.getAttribute('data-artist');
+        const songTitle = clickedElement.getAttribute('data-songtitle');
+        
+        getLyrics(artist, songTitle)
+    }
+})
 
-// GET ITEM FROM LOCAL STORAGE
-// console.log(localStorage.getItem("firstName"));
-
-// REMOVE ITEM FROM LOCAL STORAGE
-localStorage.removeItem("fruits");
-
-// CLEAR LOCAL STORAGE
-localStorage.clear();
-
-localStorage.setItem("name", "Zino");
-localStorage.setItem("age", "27");
-
-console.log(localStorage.key(0));
+// Get lyrics for song
+async function getLyrics(artist, songTitle) {
+    const response = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
+    const data = await response.json();
+  
+    const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
+  
+    result.innerHTML = `<h2><strong>${artist}</strong> - ${songTitle}</h2>
+    <p>${lyrics}</p>`;
+  
+  }
