@@ -19,7 +19,7 @@
 
 html {
   font-size: 10px;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 }
 
 body {
@@ -46,14 +46,23 @@ img {
 /* HEADER */
 header {
   width: 100%;
-  background-color: var(--dark-grey);
+  /* background-color: var(--dark-grey); */
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
+  padding: 2rem 0;
+  z-index: 111;
+  transition: all 0.5s;
+}
+
+header.sticky {
+  background-color: var(--grey);
+  /* border-bottom: 1px solid #777; */
+  padding: 1rem 0;
 }
 
 nav {
-  height: 7.5rem;
+  /* height: 7.5rem; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,10 +83,22 @@ nav {
   margin: 0 1.5rem;
 }
 
-li a {
+.nav-list li a {
   color: var(--white);
   font-size: 1.6rem;
   text-decoration: none;
+}
+
+header.sticky li a {
+  color: var(--dark-grey);
+}
+
+/* New Section CSS */
+section.header {
+  width: 100%;
+  height: 90vh;
+  background: url(./images/bg-girl.jpg) center no-repeat;
+  background-size: cover;
 }
 
 /* Section */
@@ -105,43 +126,27 @@ h2 {
   margin: 3px;
 }
 
-/* ACTIVE CLASS */
-.active {
-  position: relative;
+@media screen and (max-width: 600px) {
+  .flex {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-.active > * {
-  color: var(--color-sec);
-}
-
-.active::before {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: -5px;
-  height: 2px;
+/* Scroll Indicator CSS */
+.scroll-indicator {
   width: 100%;
-  background-color: var(--white);
-}
-
-/* SCROLL TO TOP */
-.top {
+  height: 3px;
+  background: var(--grey);
   position: fixed;
-  bottom: 3rem;
-  right: 3rem;
-  background-color: transparent;
-  padding: 1rem;
-  border: 1px solid var(--color-sec);
-  outline: none;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 111;
-  opacity: 0;
-  transform: translateY(10rem);
-  transition: all 0.3s;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  visibility: hidden;
 }
 
-.show-btn {
-  opacity: 1;
-  transform: translateY(0);
+.progress {
+  width: 0%;
+  height: 3px;
+  background-color: var(--color-sec);
 }
