@@ -41,10 +41,34 @@ img {
 }
 
 /* Start Here */
-.box {
+.main {
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+.tweet {
+  width: 30rem;
+  height: 40rem;
+  border: 2px solid var(--color-grey);
+  border-radius: 3px;
+  overflow-y: auto;
+}
+
+.tweet::-webkit-scrollbar {
+  height: 5px;
+  width: 8px;
+  border: 1px solid #d5d5d5;
+  background: #d5d5d5;
+}
+
+.tweet::-webkit-scrollbar-track {
+  --webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.tweet::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  outline: 1px solid #eee;
 }
