@@ -1,32 +1,40 @@
-const hero = document.querySelector(".hero");
-const heroBoy = document.querySelector(".hero-boy");
-const vilan = document.querySelector(".vilan");
+// console.log(window);
 
-const jump = () => {
-  if (hero.classList != "animate") {
-    hero.classList.add("animate");
-    vilan.style.animation = "move 1s infinite linear";
-  }
-  setTimeout(() => {
-    hero.classList.remove("animate");
-  }, 300);
+// console.log(Object.getOwnPropertyNames(window));
+
+// LOCAL STORAGE METHODS
+// setItem(): Add key and value to localStorage
+// getItem(): This is how you get items from localStorage
+// removeItem(): Remove an item by key from localStorage
+// clear(): Clear all localStorage
+// key(): Passed a number to retrieve the key of a localStorage
+
+// window.localStorage.setItem("key", "value");
+
+window.localStorage.setItem("firstName", "Zino");
+localStorage.setItem("lastName", "Akpareva");
+
+const person = {
+  fullName: "Akpareva Zino",
+  location: "Abuja",
 };
 
-document.addEventListener("keydown", (e) => {
-  if (e.code == "Space") {
-    jump();
-  }
-});
+localStorage.setItem("user", JSON.stringify(person));
 
-let isAlive = setInterval(() => {
-  let heroTop = parseInt(window.getComputedStyle(hero).getPropertyValue("top"));
-  //   console.log(heroTop);
-  let vilanLeft = parseInt(
-    window.getComputedStyle(vilan).getPropertyValue("left")
-  );
+const fruits = ["Pineapple", "Mango", "Pawpaw"];
 
-  if (vilanLeft < 40 && vilanLeft > 20 && heroTop >= 130) {
-    vilan.style.animation = "none";
-    alert("Game over. Press spacebar to start");
-  }
-}, 10);
+localStorage.setItem("fruits", JSON.stringify(fruits));
+
+// GET ITEM FROM LOCAL STORAGE
+// console.log(localStorage.getItem("firstName"));
+
+// REMOVE ITEM FROM LOCAL STORAGE
+localStorage.removeItem("fruits");
+
+// CLEAR LOCAL STORAGE
+localStorage.clear();
+
+localStorage.setItem("name", "Zino");
+localStorage.setItem("age", "27");
+
+console.log(localStorage.key(0));
