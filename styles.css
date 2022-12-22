@@ -23,7 +23,7 @@ html {
 
 body {
   font-family: "Open Sans", sans-serif;
-  background-color: var(--grey);
+  background-color: var(--blue);
 }
 
 p {
@@ -41,57 +41,78 @@ img {
   padding: 0 20px;
 }
 
-/* Start here */
-section {
+/* Start */
+.box {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.box {
-  width: 40rem;
-  background-color: var(--light-blue);
-  padding: 2rem;
-  color: var(--white);
-}
-
-h1 {
-  font-size: 3rem;
-  text-align: center;
-}
-
-form {
-  padding: 1rem 0;
-  font-size: 1.6rem;
-}
-
-form > * {
-  padding-bottom: 1rem;
-}
-
-form input,
-.btn {
-  padding: 1rem;
-  width: 100%;
-  font-size: 1.6rem;
-}
-
-.btn {
-  background-color: var(--color-sec);
-  color: var(--white);
-  cursor: pointer;
-  outline: none;
-  border: none;
+.calc {
+  width: 30rem;
+  height: 35rem;
+  margin: 0 auto;
+  background-color: var(--grey);
+  padding: 1.5rem;
+  border-radius: 3px;
+  position: relative;
 }
 
 .result {
+  color: var(--dark-grey);
+  background-color: var(--white);
+  height: 4.5rem;
+  width: 70%;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  border: 2px solid var(--color-sec);
   padding: 1rem;
+  overflow: hidden;
 }
 
-.reset {
+.clear {
+  width: 20%;
+  height: 4.5rem;
+  background-color: red;
   padding: 1rem;
-  margin: 5px 0;
-  display: none;
+  position: absolute;
+  right: 2rem;
+  top: 1.6rem;
+  border-radius: 3px;
+  color: var(--white);
   cursor: pointer;
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
+  font-size: 1.6rem;
+}
+
+.keys li {
+  list-style: none;
+  width: 5rem;
+  background-color: var(--white);
+  margin: 1rem 0.5rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-primary);
+  border-radius: 3px;
+  color: var(--dark-grey);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.keys li:hover {
+  background-color: var(--color-primary);
+  color: var(--white);
+}
+
+.keys .equals {
+  background-color: orangered;
+  color: var(--white);
 }
