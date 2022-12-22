@@ -4,63 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+    <script
+      src="https://kit.fontawesome.com/1935d064dd.js"
       crossorigin="anonymous"
-    />
+    ></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="row d-flex justify-content-center mt-5">
-        <div class="col-md-6">
-          <h1
-            class="text-center fw-bolder display-3 bg-dark text-light py-3 rounded"
-          >
-            Temperature Converter
-          </h1>
-          <hr />
-          <form action="">
-            <p class="alert alert-info">
-              Type a value in any of the fields to convert weight
-            </p>
-            <div class="mb-3">
-              <label for="" class="form-label">Temp in Celsius</label>
-              <input
-                type="number"
-                class="form-control form-control-lg celsius"
-                placeholder="Celsius"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Temp in Fahrenheit</label>
-              <input
-                type="number"
-                class="form-control form-control-lg fahrenheit"
-                placeholder="Fahrenheit"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Temp in Kelvin</label>
-              <input
-                type="number"
-                class="form-control form-control-lg kelvin"
-                placeholder="Kelvin"
-              />
-            </div>
-          </form>
+    <section class="main">
+      <h2>-- Testimonial Section --</h2>
+      <div class="slider">
+        <i class="fas fa-quote-left"></i>
+
+        <div class="slide slide-1">
+          <p class="testimonial-text">
+            “ I’ve been interested in coding for a while but never taken the
+            jump, until now. I couldn’t recommend this course enough. I’m now in
+            the job of my dreams and so excited about the future. ”
+          </p>
+          <div class="slide-img">
+            <img src="./images/image-tanya.jpg" alt="" />
+          </div>
+          <p class="author-text">Tanya Sinclair <span>UX Engineer</span></p>
+        </div>
+
+        <div class="slide slide-2">
+          <p class="testimonial-text">
+            “ If you want to lay the best foundation possible I’d recommend
+            taking this course. The depth the instructors go into is incredible.
+            I now feel so confident about starting up as a professional
+            developer. ”
+          </p>
+          <div class="slide-img">
+            <img src="./images/image-john.jpg" alt="" />
+          </div>
+          <p class="author-text">
+            John Tarkpor <span>Front-end Developer</span>
+          </p>
+        </div>
+
+        <div class="buttons">
+          <div class="next"></div>
+          <div class="prev"></div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Bootstrap CDN -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-      crossorigin="anonymous"
-    ></script>
     <script src="script.js"></script>
   </body>
 </html>
