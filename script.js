@@ -1,24 +1,49 @@
-const btn = document.querySelector(".btn");
-const result = document.querySelector(".result");
+const empty = "",
+  uCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  lCase = "abcdefghijklmnopqrstuvwxyz",
+  number = "0123456789",
+  symbol = "!@#$%^&*=-_";
 
-btn.addEventListener("click", palindrome);
+const pLength = document.getElementById("p-length"),
+  upperCase = document.getElementById("p-uppercase"),
+  lowerCase = document.getElementById("p-lowercase"),
+  pNumber = document.getElementById("p-number"),
+  pSymbol = document.getElementById("p-symbol"),
+  submit = document.getElementById("submit"),
+  password = document.getElementById("password"),
+  copy = document.getElementById("copy");
 
-// madam
-// noon
-function palindrome() {
-  const word = document.querySelector(".input-text").value;
-  let len = word.length;
+submit.addEventListener("click", () => {
+  let initialPassword = empty;
+  // ADD CHARACTER IF AN OPTION IS CHECKED
+  upperCase.checked ? (initialPassword += uCase) : "";
+  lowerCase.checked ? (initialPassword += lCase) : "";
+  pNumber.checked ? (initialPassword += number) : "";
+  pSymbol.checked ? (initialPassword += symbol) : "";
 
-  let start = word.substring(0, Math.floor(len / 2)).toLowerCase();
-  let end = word.substring(len - Math.floor(len / 2)).toLowerCase();
+  password.value = generatePassword(pLength.value, initialPassword);
+});
 
-  // let flip = end.split("").reverse().join("");
-
-  let flip = [...end].reverse().join("");
-  if (start == flip) {
-    result.innerHTML = `${word.toUpperCase()} is a palindrome`;
-  } else {
-    result.innerHTML = `${word.toUpperCase()} is NOT a palindrome`;
+function generatePassword(l, initialPassword) {
+  let pass = "";
+  for (let i = 0; i < l; i++) {
+    pass += initialPassword.charAt(
+      Math.floor(Math.random() * initialPassword.length)
+    );
   }
-  // alert(flip);
+  return pass;
 }
+
+// let str = "Hello";
+// let result = str.charAt(0); // H
+
+// COPY FUNCTION
+copy.addEventListener("click", () => {
+  if (password.value == "") {
+    alert("Please generate a password");
+  } else {
+    password.select();
+    document.execCommand("copy");
+    alert("Password has been copied to clipboard");
+  }
+});

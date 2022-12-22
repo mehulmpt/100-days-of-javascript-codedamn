@@ -7,8 +7,8 @@
   --light-blue: #005490;
   --color-primary: #9d0191;
   --color-sec: #db6400;
-  --color-grey: #eee;
-  --color-dark-grey: #222831;
+  --grey: #eee;
+  --dark-grey: #222831;
 }
 
 * {
@@ -40,49 +40,91 @@ img {
   padding: 0 20px;
 }
 
-/* Start Here */
-body {
-  background: var(--light-blue);
-}
-
-.main {
-  width: 100%;
+/* STARTING */
+section {
   height: 100vh;
+  background-color: var(--grey);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.pal {
+.box {
+  background-color: var(--light-blue);
+  padding: 2rem;
   width: 40rem;
-  background: var(--white);
-  padding: 5rem 3rem;
   border-radius: 5px;
 }
 
-input {
-  width: 70%;
-  border: none;
-  outline: none;
-  border-bottom: 2px solid var(--color-sec);
-  padding: 1rem 5px;
+h1 {
+  font-size: 3rem;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.form-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  color: var(--white);
+  border-bottom: 1px solid var(--grey);
   font-size: 1.6rem;
 }
 
-button {
-  width: 25%;
-  padding: 1rem 5px;
-  border: none;
-  outline: none;
-  border-radius: 3px;
-  color: var(--white);
-  background: var(--color-primary);
+.form-field label {
+  cursor: pointer;
 }
 
-p.result {
-  margin-top: 3.5rem;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--color-dark-grey);
+.p-header {
+  position: relative;
+}
+
+.p-header input {
+  width: 100%;
+  height: 100%;
+  background-color: #ea2c62;
+  padding: 1.4rem;
+  border-radius: 3px;
+  color: var(--white);
+  outline: none;
+  border: none;
+  font-size: 1.6rem;
+}
+
+.p-header button,
+.form-field input[type="number"] {
+  padding: 3px 5px;
+  background-color: var(--white);
+  outline: none;
+  border: none;
+  border-radius: 3px 0 0 0;
+  font-size: 1.4rem;
+}
+
+.p-header button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+#submit {
+  width: 100%;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  background-color: var(--color-sec);
+  color: var(--white);
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#submit:hover {
+  background-color: #ea2c62;
 }
