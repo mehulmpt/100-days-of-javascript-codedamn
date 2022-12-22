@@ -12,60 +12,14 @@
   </head>
   <body>
     <section class="main">
-      <h1>Simple Currency Converter</h1>
-      <div class="container box">
-        <div class="converter">
-          <!-- Base Conversion -->
-          <div class="base-convert">
-            <p>Exchange Rate</p>
-            <span class="base">1 USD = 300 GBP</span>
-          </div>
-          <!-- Text From & To -->
-          <div class="text">
-            <p>From</p>
-            <p>To</p>
-          </div>
-          <!-- Main Conversion -->
-          <div class="main-convert">
-            <!-- From -->
-            <div class="cur-box">
-              <div class="currency from">
-                <img
-                  src="https://www.worldometers.info/img/flags/us-flag.gif"
-                  alt=""
-                />
-                <select class="cur-1">
-                  <option value="AED">AED</option>
-                  <option value="EUR">EUR</option>
-                  <option value="GBP">GBP</option>
-                  <option value="USD" selected>USD</option>
-                </select>
-              </div>
-              <input type="text" class="cur-1-input" placeholder="0" />
-            </div>
+      <button class="btn btn-danger">Show Alert</button>
+      <button class="btn btn-warning">Show Alert</button>
 
-            <!-- Switch Button -->
-            <div class="switch-cur">
-              <div class="fas fa-exchange-alt"></div>
-            </div>
-
-            <!-- TO -->
-            <div class="cur-box">
-              <div class="currency to">
-                <img
-                  src="https://www.worldometers.info/img/flags/uk-flag.gif"
-                  alt=""
-                />
-                <select class="cur-2">
-                  <option value="AED">AED</option>
-                  <option value="EUR">EUR</option>
-                  <option value="GBP" selected>GBP</option>
-                  <option value="USD">USD</option>
-                </select>
-              </div>
-              <input type="text" class="cur-2-input" placeholder="0.00" />
-            </div>
-          </div>
+      <div class="alert">
+        <i class="fas fa-exclamation-circle"></i>
+        <span class="msg">Alert: This is a Danger Alert</span>
+        <div class="close-btn">
+          <i class="fas fa-times"></i>
         </div>
       </div>
     </section>
