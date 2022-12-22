@@ -1,67 +1,46 @@
-const form = document.getElementById("form");
-const search = document.getElementById("search");
-const result = document.getElementById("result");
+const modal = document.getElementById("modal");
+const input = document.getElementById("link");
+const btn = document.getElementById("btn");
+const close = document.getElementsByClassName("close")[0];
 
-const apiURL = "https://api.lyrics.ovh";
+btn.addEventListener("click", openPopup);
+// close.addEventListener("click", closePopup);
 
-// Get Search Value
-form.addEventListener("submit", e => {
-    e.preventDefault();
-    searchValue = search.value.trim();
-
-    if (!searchValue) {
-        alert("Nothing to search");
-    } else {
-        beginSearch(searchValue);
-    }
-})
-
-// Search function
-async function beginSearch(searchValue) {
-    const searchResult = await fetch(`${apiURL}/suggest/${searchValue}`);
-    const data = await searchResult.json();
-
-    displayData(data);
+// When the user clicks on the button, open the modal
+function openPopup(e) {
+  e.preventDefault();
+  console.log(input.value);
+  modal.style.display = "block";
+  startCountdown();
 }
 
-// Display Search Result
-function displayData(data) {
-    result.innerHTML = `
-    <ul class="songs">
-      ${data.data
-        .map(song=> `<li>
-                    <div>
-                        <strong>${song.artist.name}</strong> -${song.title} 
-                    </div>
-                    <span data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</span>
-                </li>`
-        )
-        .join('')}
-    </ul>
-  `;
+// When the user clicks on <span> (x), close the modal
+function closePopup() {
+  modal.style.display = "none";
 }
 
-//event listener in get lyrics button
-result.addEventListener('click', e=>{
-    const clickedElement = e.target;
+// When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }
 
-    //checking clicked elemet is button or not
-    if (clickedElement.tagName === 'SPAN'){
-        const artist = clickedElement.getAttribute('data-artist');
-        const songTitle = clickedElement.getAttribute('data-songtitle');
-        
-        getLyrics(artist, songTitle)
+// COUNTER FUNCTION
+let reverseCounter = 10;
+let progressBar = document.getElementById("pbar");
+let counting = document.getElementById("counting");
+
+function startCountdown(){
+    let downloadTimer = setInterval(function(){
+    progressBar.value = 10 - (--reverseCounter);
+    if(reverseCounter <= -1) {
+      clearInterval(downloadTimer);
+      closePopup();
+      window.open(input.value, "_blank");
     }
-})
+    counting.innerHTML= reverseCounter;
 
-// Get lyrics for song
-async function getLyrics(artist, songTitle) {
-    const response = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
-    const data = await response.json();
-  
-    const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
-  
-    result.innerHTML = `<h2><strong>${artist}</strong> - ${songTitle}</h2>
-    <p>${lyrics}</p>`;
-  
-  }
+},1000);
+let reverseCounter = 11;
+}

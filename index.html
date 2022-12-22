@@ -9,20 +9,31 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>Lyrics Search App</h1>
-            <form id="form"  autocomplete="off">
-                <input type="text" id="search"  placeholder="Search artiste or song">
-                <button>Search</button>
-            </form>
-        </div>
+        <h1>Lets <span>Minify</span>!</h1>
+        <p>Paste your URL below and Click the button</p>
     </header>
-    
     <section>
-        <div class="container" id="result">
-            <p>Enter Song or Artiste in the field above</p> 
+        <div class="container">
+            <form action="">
+                <input id="link" type="text" placeholder="https://example.com">
+                <button id="btn">TEST POPUP</button>
+            </form>
+
         </div>
     </section>
+    <footer>
+        <p>&copy; 2021 <a href="https://zinotrustacademy.com">ZinoTrust Tutorials</a> </p>
+    </footer>
+
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Your download will begin in..</p>
+        <progress value="0" max="10" id="pbar" class="progress"></progress>
+        <p id="counting">10</p>
+        </div>
+  </div>
 
     <script src="script.js"></script>
 </body>
