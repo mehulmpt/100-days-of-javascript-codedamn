@@ -11,27 +11,64 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="counter-div">
-        <h1>Counter App</h1>
-        <span class="count">0</span>
-        <hr />
-        <div class="buttons">
-          <button class="subtract">
-            <i class="fas fa-arrow-down subtract"></i>
-            Subtract
-          </button>
-          <button class="reset">
-            <i class="fas fa-spinner reset"></i>
-            Reset
-          </button>
-          <button class="add">
-            <i class="fas fa-arrow-up add"></i>
-            Add
-          </button>
+    <section class="main">
+      <h1>Simple Currency Converter</h1>
+      <div class="container box">
+        <div class="converter">
+          <!-- Base Conversion -->
+          <div class="base-convert">
+            <p>Exchange Rate</p>
+            <span class="base">1 USD = 300 GBP</span>
+          </div>
+          <!-- Text From & To -->
+          <div class="text">
+            <p>From</p>
+            <p>To</p>
+          </div>
+          <!-- Main Conversion -->
+          <div class="main-convert">
+            <!-- From -->
+            <div class="cur-box">
+              <div class="currency from">
+                <img
+                  src="https://www.worldometers.info/img/flags/us-flag.gif"
+                  alt=""
+                />
+                <select class="cur-1">
+                  <option value="AED">AED</option>
+                  <option value="EUR">EUR</option>
+                  <option value="GBP">GBP</option>
+                  <option value="USD" selected>USD</option>
+                </select>
+              </div>
+              <input type="text" class="cur-1-input" placeholder="0" />
+            </div>
+
+            <!-- Switch Button -->
+            <div class="switch-cur">
+              <div class="fas fa-exchange-alt"></div>
+            </div>
+
+            <!-- TO -->
+            <div class="cur-box">
+              <div class="currency to">
+                <img
+                  src="https://www.worldometers.info/img/flags/uk-flag.gif"
+                  alt=""
+                />
+                <select class="cur-2">
+                  <option value="AED">AED</option>
+                  <option value="EUR">EUR</option>
+                  <option value="GBP" selected>GBP</option>
+                  <option value="USD">USD</option>
+                </select>
+              </div>
+              <input type="text" class="cur-2-input" placeholder="0.00" />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <script src="script.js"></script>
   </body>
