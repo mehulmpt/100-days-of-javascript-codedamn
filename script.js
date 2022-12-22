@@ -1,34 +1,18 @@
-const toggleDarkMode = document.querySelector(".toggle-darkmode");
-const toggleText = document.querySelector(".toggle-text");
+const btns = document.querySelectorAll(".btn");
+const text = document.querySelector(".text");
 
-let darkMode = localStorage.getItem("darkMode");
+btns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    // const filter = e.target.getAttribute("data-link");
+    const filter = e.target.dataset.link;
 
-// Set Dark Mode
-const enableDarkMode = () => {
-  document.body.classList.add("darkmode");
-  toggleText.textContent = "Light";
-  localStorage.setItem("darkMode", "enabled");
-};
-
-// Disable Dark Mode
-const disableDarkMode = () => {
-  document.body.classList.remove("darkmode");
-  toggleText.textContent = "Dark";
-  localStorage.setItem("darkMode", null);
-};
-
-// Save DarkMode History
-if (darkMode === "enabled") {
-  enableDarkMode();
-}
-
-// Add Event Listener
-toggleDarkMode.addEventListener("click", () => {
-  let darkMode = localStorage.getItem("darkMode");
-
-  if (darkMode !== "enabled") {
-    enableDarkMode();
-  } else {
-    disableDarkMode();
-  }
+    console.log(filter);
+    if (filter == "home") {
+      text.textContent = "Home Page";
+    } else if (filter == "about") {
+      text.textContent = "About Page";
+    } else {
+      text.textContent = "Contact Page";
+    }
+  });
 });
