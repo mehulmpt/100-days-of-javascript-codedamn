@@ -1,46 +1,57 @@
-const modal = document.getElementById("modal");
-const input = document.getElementById("link");
-const btn = document.getElementById("btn");
-const close = document.getElementsByClassName("close")[0];
+const apiURL =
+  "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
 
-btn.addEventListener("click", openPopup);
-// close.addEventListener("click", closePopup);
+const searchAPI =
+  "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
 
-// When the user clicks on the button, open the modal
-function openPopup(e) {
+const imgPATH = "https://image.tmdb.org/t/p/w1280";
+
+let moviesDiv = document.querySelector(".movies");
+let form = document.querySelector("form");
+let input = document.querySelector(".search");
+
+getMovies(apiURL);
+
+async function getMovies(url) {
+  const res = await fetch(url);
+  const data = await res.json();
+
+  console.log(data.results);
+  displayMovies(data.results);
+}
+
+// Display Movies
+function displayMovies(movies) {
+  moviesDiv.innerHTML = "";
+
+  movies.forEach((movie) => {
+    const div = document.createElement("div");
+    div.classList.add("movie");
+    div.innerHTML = `
+        <img src="${imgPATH + movie.poster_path}" alt="" />
+
+        <div class="details">
+          <h2 class="title">${movie.title}</h2>
+          <p class="rate">Rating: <span class="rating">${
+            movie.vote_average
+          }</span></p>
+          <p class="overview">
+            ${movie.overview}
+          </p>
+        </div>
+        `;
+    moviesDiv.appendChild(div);
+  });
+}
+
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log(input.value);
-  modal.style.display = "block";
-  startCountdown();
-}
+  moviesDiv.innerHTML = "";
 
-// When the user clicks on <span> (x), close the modal
-function closePopup() {
-  modal.style.display = "none";
-}
+  const inputVal = input.value;
 
-// When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
-
-// COUNTER FUNCTION
-let reverseCounter = 10;
-let progressBar = document.getElementById("pbar");
-let counting = document.getElementById("counting");
-
-function startCountdown(){
-    let downloadTimer = setInterval(function(){
-    progressBar.value = 10 - (--reverseCounter);
-    if(reverseCounter <= -1) {
-      clearInterval(downloadTimer);
-      closePopup();
-      window.open(input.value, "_blank");
-    }
-    counting.innerHTML= reverseCounter;
-
-},1000);
-let reverseCounter = 11;
-}
+  if (inputVal) {
+    getMovies(searchAPI + inputVal);
+    input.value = "";
+  }
+});
