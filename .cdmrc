@@ -1,0 +1,3 @@
+tabs: ['index.html']
+terminal-one: static-server -p 1337 --no-cache
+live-reload-browser: true
