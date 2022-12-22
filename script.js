@@ -1,64 +1,76 @@
-const main = document.querySelector(".main");
-const alertBox = document.querySelector(".alert");
-const exclamationIcon = document.querySelector(".fa-exclamation-circle");
-const msg = document.querySelector(".msg");
-const closeBtn = document.querySelector(".close-btn");
-const closeIcon = document.querySelector(".fa-times");
+const btn1 = document.querySelector(".btn-1");
+const btn2 = document.querySelector(".btn-2");
+const confirmEl = document.querySelector(".confirm");
+const closeEl = document.querySelector(".close");
+const title = document.querySelector(".title");
+const content = document.querySelector(".content");
+const btnOk = document.querySelector(".btn-ok");
+const btnCancel = document.querySelector(".btn-cancel");
 
-// ShowAlert Class
-class ShowAlert {
-  constructor(state, borderColor, color) {
-    this.state = state;
-    this.borderColor = borderColor;
-    this.color = color;
+// Custom Confirm Box
+class ShowConfirm {
+  constructor(title, content, ok, cancel) {
+    this.title = title;
+    this.content = content;
+    this.ok = ok;
+    this.cancel = cancel;
   }
 
-  trigger(message) {
-    alertBox.style.background = this.state;
-    alertBox.style.borderColor = this.borderColor;
-    msg.textContent = message;
-    msg.style.color = this.color;
-    exclamationIcon.style.color = this.color;
-    closeIcon.style.color = this.color;
+  trigger(callbackFn) {
+    title.textContent = this.title;
+    content.textContent = this.content;
+    btnOk.innerText = this.ok;
+    btnCancel.innerText = this.cancel;
 
-    alertBox.classList.add("show");
-    alertBox.classList.remove("hide");
-    setTimeout(() => {
-      alertBox.classList.remove("show");
-      alertBox.classList.add("hide");
-    }, 5000);
-    start();
-    closeBtn.addEventListener("click", () => {
-      alertBox.classList.remove("show");
-      alertBox.classList.add("hide");
+    confirmEl.classList.remove("close-modal");
+
+    closeEl.addEventListener("click", this.closeModal);
+    btnCancel.addEventListener("click", this.closeModal);
+
+    btnOk.addEventListener("click", () => {
+      callbackFn();
+      this.closeModal();
     });
   }
+
+  closeModal() {
+    confirmEl.classList.add("close-modal");
+  }
 }
 
-const warning = new ShowAlert("#ffdb9b", "#ffa502", "#ce8500");
-const danger = new ShowAlert("#f8d7da", "#d1281f", "#721c24");
-
-main.addEventListener("click", (e) => {
-  if (e.target.classList.contains("btn-danger")) {
-    danger.trigger("Alert: This is a dangerous alert!");
-  } else if (e.target.classList.contains("btn-warning")) {
-    warning.trigger("Alert: This is a Warning alert!");
-  }
+// Btn Event Listeners
+btn1.addEventListener("click", () => {
+  changeBg("red");
+});
+btn2.addEventListener("click", () => {
+  changeBg("purple");
 });
 
-// Progress Bar
-function start() {
-  const progress = document.querySelector(".progress");
-  let width = 0;
-  const timeInterval = setInterval(fill, 50); // Divide ShowAlert setTimeout value by 100
+const changeBag = new ShowConfirm(
+  "Change Background",
+  "You are about to change the background!",
+  "Change",
+  "Cancel"
+);
 
-  function fill() {
-    if (width >= 100) {
-      clearInterval(timeInterval);
-    } else {
-      width++;
-      progress.style.width = width + "%";
-      // progress.innerHTML = width + "%";
-    }
+function changeBg(color) {
+  changeBag.trigger(setBg);
+  function setBg() {
+    document.body.style.backgroundColor = color;
   }
 }
+
+// Defaul Confirm Example
+// btn1.addEventListener("click", () => {
+//   changeBg("red");
+// });
+// btn2.addEventListener("click", () => {
+//   changeBg("purple");
+// });
+
+// function changeBg(color) {
+//   let x = confirm("Change Backround to " + color);
+//   if (x) {
+//     document.body.style.backgroundColor = color;
+//   }
+// }
