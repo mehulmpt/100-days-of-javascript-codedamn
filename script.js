@@ -1,28 +1,65 @@
-const countTo = "1 Jan 2021";
+let today = new Date();
 
-const c = setInterval(() => {
+function getDate(d) {
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
-    const endDate = new Date(countTo);
-    const currentDate = new Date();
-    const totalSeconds = (endDate - currentDate) / 1000;
+  let day = days[d.getDay()];
+  let date = d.getDate();
+  let month = months[d.getMonth()];
+  let year = d.getFullYear();
 
-    const days = Math.floor(totalSeconds / 3600 / 24); 
-    const hours = Math.floor(totalSeconds / 3600) % 24; 
-    const minutes = Math.floor(totalSeconds / 60) % 60; 
-    const seconds = Math.floor(totalSeconds) % 60; 
-
-    const countDown = document.getElementById("countdown");
-
-    countDown.textContent = `${days}Days ${format(hours)}Hrs : ${format(minutes)}Min : ${format(seconds)}s`;
-
-    if (totalSeconds < 0) {
-        clearInterval(c);
-        countDown.textContent = "Happy New Year";
-    }
-
-}, 1000)
-
-function format(t) {
-    return t < 10 ? `0${t}` : t;
+  return `${day}, ${date} ${month} ${year}`;
 }
 
+const date = document.querySelector(".date");
+date.innerHTML = getDate(today);
+
+// Get Time
+function showTime() {
+  let date = new Date();
+
+  let h = date.getHours();
+  let m = date.getMinutes();
+  let s = date.getSeconds();
+  let session = "AM";
+
+  if (h == 0) {
+    h = 12;
+  }
+  if (h > 12) {
+    h = h - 12;
+    session = "PM";
+  }
+
+  // Append 0 to single digit
+  h = h < 10 ? "0" + h : h;
+  m = m < 10 ? "0" + m : m;
+  s = s < 10 ? "0" + s : s;
+
+  let time = `${h}:${m}:${s} ${session}`;
+  document.querySelector(".time").innerHTML = time;
+}
+
+setInterval(showTime, 1000);
