@@ -31,7 +31,7 @@ p {
 }
 
 img {
-  width: 100%;
+  width: 50%;
 }
 
 .container {
@@ -41,11 +41,7 @@ img {
 }
 
 /* Start Here */
-body {
-  background: var(--color-grey);
-}
-
-.box {
+section.main {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -53,17 +49,127 @@ body {
   align-items: center;
 }
 
-.form-item {
-  position: relative;
-  margin: 5px 0;
-}
-.form-item > * {
-  padding: 8px;
+.intro {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  border-bottom: 2px solid #8392ff;
 }
 
-.fas {
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.intro-text > * {
+  margin-bottom: 1rem;
+}
+
+.intro-text p:nth-child(1) {
+  font-weight: 600;
+}
+
+.intro-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-dark-grey);
+}
+
+.intro-text h1 span.typed-word {
+  font-weight: 400;
+  color: var(--color-sec);
+}
+
+.cursor {
+  display: inline-block;
+  background-color: #ccc;
+  width: 2px;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+.cursor.typing {
+  animation: none;
+}
+
+@keyframes blink {
+  0% {
+    background: #ccc;
+  }
+  49% {
+    background: #ccc;
+  }
+  50% {
+    background: transparent;
+  }
+  99% {
+    background: transparent;
+  }
+  100% {
+    background: #ccc;
+  }
+}
+
+span {
+  margin: 1rem 0;
+}
+
+.btn {
+  font-size: 1.4rem;
+  text-decoration: none;
+  border-radius: 50px;
+  padding: 8px 1rem;
+  background-color: var(--color-sec);
+  color: var(--white);
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background-color: var(--light-blue);
+}
+
+.intro-img {
+  text-align: center;
+}
+
+.intro-img img {
+  width: 70%;
+}
+
+/* Preloader CSS */
+.preloader {
+  height: 100%;
+  width: 100%;
+  background: var(--color-grey);
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.spinner {
+  width: 6rem;
+  height: 6rem;
+  border: 3px solid var(--white);
+  border-top: 3px solid var(--color-sec);
+  border-right: 3px solid var(--color-sec);
+  border-bottom: 3px solid var(--color-sec);
+  border-radius: 100%;
   position: absolute;
-  right: 1.1rem;
-  top: 5px;
-  cursor: pointer;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  animation: rotate 1s infinite ease-in-out;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.youtube {
+  display: flex;
+  justify-content: center;
 }
