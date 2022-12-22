@@ -17,11 +17,7 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: var(--grey);
-}
-
-/* html {
+html {
   font-size: 10px;
 }
 
@@ -35,13 +31,33 @@ p {
 }
 
 img {
-  width: 100%;
+  width: 30%;
 }
 
 .container {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 20px;
-} */
+}
 
-/* Conversion formula */
+/* Start Here */
+form {
+  position: relative;
+}
+
+form button {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  border: none;
+  outline: none;
+}
+
+form i {
+  font-size: 1.6rem;
+  color: var(--light-blue);
+}
+
+.hide {
+  display: none;
+}

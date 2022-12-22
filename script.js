@@ -1,57 +1,66 @@
-let pounds = document.querySelector(".pounds"),
-  kilograms = document.querySelector(".kilograms"),
-  grams = document.querySelector(".grams"),
-  ounces = document.querySelector(".ounces"),
-  form = document.querySelector("form");
+const search = document.querySelector("input");
+const form = document.querySelector("form");
+const searchResults = document.querySelector(".results");
+const errorMsg = document.querySelector(".alert");
+const line = document.querySelector("hr");
 
-form.addEventListener("input", convertWeight);
+const apiURL =
+  "https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=";
 
-function convertWeight(e) {
-  if (e.target.classList.contains("pounds")) {
-    let x = e.target.value;
-    kilograms.value = (x / 2.2046).toFixed(2);
-    grams.value = (x / 0.0022046).toFixed(2);
-    ounces.value = (x * 16).toFixed(2);
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const searchValue = search.value;
+  if (searchValue === "") {
+    errorMessage("Search cannot be empty, please enter a search term.");
+  } else {
+    getResult(searchValue);
   }
+});
 
-  if (e.target.classList.contains("kilograms")) {
-    let x = e.target.value;
-    pounds.value = x * 2.2046;
-    grams.value = x * 1000;
-    ounces.value = x * 35.274;
-  }
+// Error Message
+function errorMessage(msg) {
+  errorMsg.style.display = "block";
+  line.style.display = "block";
+  errorMsg.textContent = msg;
+}
 
-  if (e.target.classList.contains("grams")) {
-    let x = e.target.value;
-    kilograms.value = x / 1000;
-    pounds.value = x * 0.0022046;
-    ounces.value = x * 0.035274;
-  }
+async function getResult(searchVal) {
+  const response = await fetch(apiURL + searchVal);
+  const results = await response.json();
 
-  if (e.target.classList.contains("ounces")) {
-    let x = e.target.value;
-    kilograms.value = x / 35.274;
-    grams.value = x / 0.035274;
-    pounds.value = x * 0.0625;
+  console.log(results);
+  if (results.query.search.length == 0) {
+    return errorMessage("Invalid search, please enter another search term.");
+  } else {
+    displayResults(results);
   }
 }
 
-// -- From pounds to --
-// kilograms = x / 2.2046;
-// grams = x / 0.0022046;
-// ounces = x * 16;
-
-// -- From Kilogram to --
-// pounds = x * 2.2046;
-// grams = x * 1000;
-// ounces = x * 35.274;
-
-// -- From Gram to --
-// kilograms = x / 1000;
-//   pounds = x * 0.0022046;
-//   ounces = x * 0.035274;
-
-// -- From Ounce to --
-// kilograms = x / 35.274;
-// grams = x / 0.035274;
-// pounds = x * 0.0625;
+// Display Results
+function displayResults(results) {
+  line.style.display = "block";
+  let output = "";
+  results.query.search.forEach((result) => {
+    let resultURL = `https://en.wikipedia.org/?curid=${result.pageid}`;
+    output += `
+    <div class="result p-2">
+    <a href="${resultURL}" target="_blank" rel="noopener" class="h3 fw-bold"
+      >${result.title}</a
+    >
+    <br />
+    <a
+      href="${resultURL}"
+      target="_blank"
+      rel="noopener"
+      class="fs-5 text-success"
+      >${resultURL}</a
+    >
+    <p class="fs-5">
+    ${result.snippet}
+    </p>
+  </div>
+    `;
+    searchResults.innerHTML = output;
+  });
+}
