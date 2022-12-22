@@ -1,38 +1,24 @@
-const links = document.querySelectorAll(".nav-list li a");
+const btn = document.querySelector(".btn");
+const result = document.querySelector(".result");
 
-for (link of links) {
-  link.addEventListener("click", smoothScroll);
-}
+btn.addEventListener("click", palindrome);
 
-function smoothScroll(e) {
-  e.preventDefault();
-  const href = this.getAttribute("href");
-  document.querySelector(href).scrollIntoView({
-    behavior: "smooth",
-  });
-}
+// madam
+// noon
+function palindrome() {
+  const word = document.querySelector(".input-text").value;
+  let len = word.length;
 
-// Sticky Header
-window.addEventListener("scroll", () => {
-  const header = document.querySelector("header");
-  header.classList.toggle("sticky", window.scrollY > 0);
-});
+  let start = word.substring(0, Math.floor(len / 2)).toLowerCase();
+  let end = word.substring(len - Math.floor(len / 2)).toLowerCase();
 
-// Scroll Indicator JS
-window.onscroll = () => scrollProgress();
+  // let flip = end.split("").reverse().join("");
 
-function scrollProgress() {
-  const currentState =
-    document.body.scrollTop || document.documentElement.scrollTop;
-
-  const pageHeight =
-    document.documentElement.scrollHeight -
-    document.documentElement.clientHeight;
-
-  const scrollPercentage = (currentState / pageHeight) * 100;
-
-  const progressBar = document.querySelector(".progress");
-
-  progressBar.style.visibility = "visible";
-  progressBar.style.width = scrollPercentage + "%";
+  let flip = [...end].reverse().join("");
+  if (start == flip) {
+    result.innerHTML = `${word.toUpperCase()} is a palindrome`;
+  } else {
+    result.innerHTML = `${word.toUpperCase()} is NOT a palindrome`;
+  }
+  // alert(flip);
 }
