@@ -1,88 +1,83 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
 
 :root {
-  --white: #fff;
-  --black: #1c2b2d;
-  --blue: #31326f;
-  --light-blue: #005490;
-  --color-primary: #9d0191;
-  --color-sec: #db6400;
-  --grey: #eee;
-  --dark-grey: #222831;
+    --white: #fff;
+    --black: #1c2b2d;
+    --blue: #31326f;
+    --light-blue: #005490;
+    --color-primary: #9d0191;
+    --color-sec: #db6400;
+    --color-grey: #eee;
+    --color-dark-grey: #222831;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 10px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* UTILITY */
+.p-small {
+    padding-bottom: 5px;
+}
+.p-medium {
+    padding-bottom: 10px;
+}
+.p-y {
+    padding: 10px 0;
+}
+.m-y {
+    margin: 10px 0;
 }
 
 p {
-  font-size: 1.6rem;
-  line-height: 1.5;
+    font-size: 1.6rem;
+    line-height: 1.5;
 }
 
 img {
-  width: 100%;
+    width: 100%;
 }
 
 .container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.counter-div {
-  width: 40rem;
-  border: 1px solid var(--grey);
-  padding: 1rem;
-  background-color: var(--light-blue);
-  color: var(--white);
-  text-align: center;
-  border-radius: 5px;
+section {
+    background-color: var(--black);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.counter-div > * {
-  margin-bottom: 2rem;
+.online {
+    background-color: var(--light-blue);
 }
 
-.count {
-  font-size: 4rem;
-  border: 1px solid var(--white);
-  padding: 0 1rem-;
+section img {
+    width: 25%;
+    border-radius: 10rem;
+    
 }
 
-.buttons button {
-  padding: 1rem;
-  margin: 0 1rem;
-  font-size: 1.5rem;
-  color: var(--white);
-  font-weight: 700;
-  border: none;
-  outline: none;
-  border-radius: 3px;
-  cursor: pointer;
+section h1 {
+    color: #fff;
+    font-size: 3.5rem;
+    font-weight: 600;
 }
 
-button.subtract {
-  background-color: orangered;
+section p {
+    color: #fff;
+    font-size: 2rem;
 }
-button.reset {
-  background-color: var(--white);
-  color: var(--black);
-}
-button.add {
-  background-color: green;
-}
+
