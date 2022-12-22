@@ -23,18 +23,29 @@
           <h1 class="text-center py-3 bg-primary text-light">
             Speech To Text Project
           </h1>
-          <form action="" id="search-form">
-            <textarea
+          <form
+            action="https://www.google.com/search"
+            id="search-form"
+            method="get"
+            target="_blank"
+          >
+            <span>Voice Commands: search, stop recording, reset form</span>
+            <input
+              name="q"
               id="search-input"
-              cols="30"
-              rows="5"
-              class="form-control fs-3"
-            ></textarea>
+              placeholder="Search Google"
+              autocomplete="off"
+              autofocus
+              type="text"
+              class="form-control fs-3 mt-2"
+            />
             <div
               id="speech-btn"
               class="speech-btn pt-1 d-flex justify-content-between align-items-center"
             >
-              <p class="instruction fs-5">Click the Mic icon to start</p>
+              <p class="instruction fs-5">
+                Press Ctrl + x or Click the Mic icon to start
+              </p>
               <button class="btn btn-danger">
                 <i class="fas fa-microphone"></i>
               </button>
