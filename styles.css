@@ -41,60 +41,84 @@ img {
 }
 
 /* Start Here */
-section.main {
-  width: 100%;
+.main {
   height: 100vh;
   background-color: var(--grey);
-}
-
-.fab-btn {
-  position: absolute;
-  right: 3rem;
-  bottom: 1.5rem;
-  width: 5.5rem;
-  height: 5.5rem;
-  background-color: #ff4081;
-  color: var(--white);
-  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.box {
+  background-color: var(--white);
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 40rem;
+}
+
+form {
+  padding: 2rem;
+}
+
+form h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-control {
+  margin-bottom: 1rem;
+  padding-bottom: 1.5rem;
+  position: relative;
+}
+
+.form-control label {
+  display: block;
+  margin-bottom: 5px;
+  color: #777;
+}
+
+.form-control input {
+  display: block;
+  border: 2px solid var(--grey);
+  border-radius: 3px;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.4rem;
+}
+
+.form-control input:focus {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.form-control.success input {
+  border-color: green;
+}
+.form-control.error input {
+  border-color: red;
+}
+
+.form-control small {
+  color: red;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+}
+
+.form-control.error small {
+  visibility: visible;
+}
+
+form button {
+  width: 100%;
+  background-color: var(--color-sec);
+  border: none;
+  outline: none;
+  color: var(--white);
+  padding: 1rem;
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  border-radius: 3px;
   cursor: pointer;
-  font-size: 2rem;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s;
-}
-
-.fab-btn i {
-  transition: all 0.3s;
-}
-
-.fab-btns .fab-btn {
-  width: 4rem;
-  height: 4rem;
-  right: 3.8rem;
-  bottom: 2.3rem;
-  font-size: 1.5rem;
-}
-
-.fab-btns.show .fab-btn:nth-child(1) {
-  bottom: 8rem;
-  background: #3b5999;
-}
-/* Add 5rem to the bottom value */
-.fab-btns.show .fab-btn:nth-child(2) {
-  bottom: 13rem;
-  background: #55acee;
-}
-.fab-btns.show .fab-btn:nth-child(3) {
-  bottom: 18rem;
-  background: #25d366;
-}
-.fab-btns.show .fab-btn:nth-child(4) {
-  bottom: 23rem;
-  background: var(--color-primary);
-}
-
-.fab-btns.show + .fab-btn i {
-  transform: rotate(135deg);
 }
