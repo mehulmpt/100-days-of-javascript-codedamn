@@ -1,30 +1,34 @@
-// Time Countdown
-let time = 1; // Time in minutes
-let promoTime = time * 60;
+const btn = document.querySelector(".btn"),
+  tip = document.querySelector(".tip"),
+  total = document.querySelector(".total"),
+  error = document.querySelector(".error");
 
-let counting = document.getElementById("countdown");
+const hideError = () => {
+  setTimeout(() => {
+    error.style.display = "none";
+  }, 5000);
+};
 
-function startCountdown() {
-  let promoTimer = setInterval(() => {
-    if (promoTime <= 0) {
-      clearInterval(promoTimer);
-      counting.innerHTML = "Promo has ended.";
-    } else {
-      promoTime--;
-      let day = Math.floor(promoTime / 3600 / 24);
-      let hours = Math.floor(promoTime / 3600) % 24;
-      let min = Math.floor(promoTime / 60) % 60;
-      let sec = Math.floor(promoTime % 60);
+const calculateTip = () => {
+  const bill = document.querySelector(".bill").value;
+  const rate = document.querySelector(".rate").value;
 
-      counting.innerHTML = `TIME: ${format(hours)}hr : ${format(
-        min
-      )}min : ${format(sec)}`;
-    }
-  }, 1000);
-}
+  if (bill === "" || rate == "") {
+    // console.log("please add a number");
+    error.style.display = "block";
+    hideError();
+  } else if (isNaN(bill)) {
+    error.innerHTML = "Please enter a number";
+    error.style.display = "block";
+    hideError();
+  } else {
+    let tipAmt = bill * rate;
+    tipAmt = Math.ceil(tipAmt);
+    tip.innerHTML = `Tip: $${tipAmt}`;
 
-function format(t) {
-  return t < 10 ? `0${t}` : t;
-}
+    let totalBill = Number(bill) + tipAmt;
+    total.innerHTML = `Total Bill: $${totalBill}`;
+  }
+};
 
-startCountdown();
+btn.addEventListener("click", calculateTip);
