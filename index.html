@@ -1,89 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script
-      src="https://kit.fontawesome.com/1935d064dd.js"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
+    <script src="https://kit.fontawesome.com/1935d064dd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
     <div class="container">
-      <div class="row box">
-        <div
-          class="col-md-5 mx-auto border border-primary rounded p-3 bg-light"
-        >
-          <img class="creator" src="./images/zino.png" alt="" />
-          <p class="text-center">Zino</p>
-          <form
-            action="https://www.google.com/search"
-            id="search-form"
-            method="get"
-            target="_blank"
-          >
-            <input
-              name="q"
-              id="search-input"
-              placeholder=""
-              autocomplete="off"
-              autofocus
-              type="text"
-              class="form-control fs-3 mt-2"
-            />
-            <div
-              id="speech-btn"
-              class="speech-btn pt-1 d-flex justify-content-between align-items-center"
-            >
-              <p class="instruction fs-5">
-                Press Ctrl + X or Click the Mic icon to start
-              </p>
-              <button class="btn btn-danger">
-                <i class="fas fa-microphone"></i>
-              </button>
-            </div>
-          </form>
-        </div>
+        <div class="quiz-box">
+            <div id="quiz">
+                <h1>JavaScript Quiz App</h1>
+                <div class="quiz-header">
+                    <p id="progress">Question x of y</p>
+                    <p id="count-down"></p>
+                </div>
+                <p id="question"></p>
 
-        <!-- Anita section -->
-        <!-- Anita section -->
-        <!-- Anita section -->
+                <div class="buttons">
+                    <button class="btn" id="btn0">A. <span id="choice0"></span></button>
+                    <button class="btn" id="btn1">B. <span id="choice1"></span></button>
+                    <button class="btn" id="btn2">C. <span id="choice2"></span></button>
+                    <button class="btn" id="btn3">D. <span id="choice3"></span></button>
+                </div>
 
-        <div
-          class="col-md-5 mx-auto border border-primary rounded p-3 bg-light"
-        >
-          <img class="creator anita" src="./images/anita.gif" alt="" />
-          <p class="text-center">Anita</p>
-          <form action="" id="search-form">
-            <textarea
-              id="search-input"
-              cols="30"
-              rows="1"
-              class="form-control fs-3"
-            ></textarea>
-            <div
-              id="speech-btn"
-              class="speech-btn pt-1 d-flex justify-content-between align-items-center"
-            >
-              <p class="instruction fs-5">...</p>
-              <button class="btn btn-danger">
-                <i class="fas fa-microphone"></i>
-              </button>
+                <hr>
+                <footer>
+                    <p>ZinoTrust Tutorials</p>
+
+                </footer>
             </div>
-          </form>
         </div>
-      </div>
     </div>
 
-    <script src="data.js"></script>
-    <script src="script.js"></script>
-  </body>
+    <script src="app.js"></script>
+</body>
+
 </html>
