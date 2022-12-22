@@ -40,88 +40,97 @@ img {
   padding: 0 20px;
 }
 
-/* SECTION */
-/* SECTION */
-/* SECTION */
+/* START HERE */
+body {
+  background-color: #ccc;
+}
+
 section {
-  height: 100vh;
-  background-color: var(--light-blue);
+  width: 100%;
+  padding: 0 3rem;
+}
+
+.container {
+  max-width: 60rem;
+  margin: 5rem auto;
+}
+
+.add-item {
+  background-color: var(--color-primary);
+  padding: 5rem 0;
+  margin: 2rem auto;
+  border-radius: 5px;
+}
+
+.add-item form {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.calc {
-  width: 40rem;
-  background-color: var(--white);
+.add-item form input {
+  padding: 1rem 1.5rem;
+  font-size: 1.8rem;
+  color: var(--grey);
+  width: 75%;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  outline: none;
+  background-color: transparent;
+  margin-right: 5px;
+}
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+form button {
+  width: 10%;
+  font-size: 1.6rem;
+  border: 1px solid transparent;
+  outline: none;
+  border-radius: 5px;
+  background-color: var(--color-sec);
+  color: var(--grey);
+  padding: 1rem;
+  cursor: pointer;
 }
 
 h2 {
-  font-size: 4rem;
-  color: var(--white);
-  background-color: var(--color-sec);
-  text-align: center;
-  padding: 1rem;
+  font-size: 2rem;
+  color: var(--color-sec);
+  margin-bottom: 1rem;
 }
 
-form,
-form > * {
-  width: 90%;
-  margin: 0 auto;
-  text-align: center;
-  padding: 1rem 0;
+ol li {
   font-size: 1.6rem;
-  border-bottom: 2px solid var(--color-primary);
-}
-
-form div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-input,
-select {
-  font-size: 1.6rem;
-  padding: 7px;
-  width: 20rem;
-  text-align: right;
-}
-
-.btn {
   margin: 5px 0;
-  background-color: var(--color-primary);
+  background-color: var(--grey);
+  border-radius: 5px;
+  padding: 1rem;
+  position: relative;
+}
+
+ol li:nth-child(odd) {
+  background-color: #321f28;
   color: var(--white);
+}
+
+li button {
+  font-size: 1.6rem;
+  color: red;
+  background-color: transparent;
   outline: none;
   border: none;
-  border-radius: 3px;
+  position: absolute;
+  right: 1rem;
+  top: 1.2rem;
   cursor: pointer;
-  transition: all 0.3s;
 }
 
-.btn:hover {
-  background-color: var(--color-sec);
-}
-
-.error {
-  color: red;
-  display: none;
-}
-
-.result {
-  width: 90%;
-  margin: 0 auto;
+.clear {
   padding: 1rem;
-}
-
-.result > * {
-  background-color: var(--grey);
-  margin-bottom: 1rem;
-  padding: 1rem;
-  font-size: 1.8rem;
-  font-weight: 700;
-}
-
-.total {
-  color: red;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-size: 1.6rem;
 }

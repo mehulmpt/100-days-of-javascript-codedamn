@@ -1,34 +1,38 @@
-const btn = document.querySelector(".btn"),
-  tip = document.querySelector(".tip"),
-  total = document.querySelector(".total"),
-  error = document.querySelector(".error");
+// Variables
+const input = document.querySelector("input"),
+  btn = document.querySelector("button"),
+  todoList = document.querySelector(".todo-list"),
+  clear = document.querySelector(".clear");
 
-const hideError = () => {
-  setTimeout(() => {
-    error.style.display = "none";
-  }, 5000);
-};
+//   ADD LIST ITEM
+const addTask = (e) => {
+  e.preventDefault();
+  const newLi = document.createElement("li");
+  const delBtn = document.createElement("button");
 
-const calculateTip = () => {
-  const bill = document.querySelector(".bill").value;
-  const rate = document.querySelector(".rate").value;
+  delBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
 
-  if (bill === "" || rate == "") {
-    // console.log("please add a number");
-    error.style.display = "block";
-    hideError();
-  } else if (isNaN(bill)) {
-    error.innerHTML = "Please enter a number";
-    error.style.display = "block";
-    hideError();
+  if (input.value !== "") {
+    newLi.textContent = input.value;
+    newLi.appendChild(delBtn);
+    todoList.appendChild(newLi);
+    input.value = "";
   } else {
-    let tipAmt = bill * rate;
-    tipAmt = Math.ceil(tipAmt);
-    tip.innerHTML = `Tip: $${tipAmt}`;
-
-    let totalBill = Number(bill) + tipAmt;
-    total.innerHTML = `Total Bill: $${totalBill}`;
+    alert("Please enter a task");
   }
+
+  //   DELETE FUNCTION
+  delBtn.addEventListener("click", function () {
+    const del = confirm("You are about to delete this task!!!");
+    if (del == true) {
+      const parent = this.parentNode;
+      parent.remove();
+    }
+  });
 };
 
-btn.addEventListener("click", calculateTip);
+btn.addEventListener("click", addTask);
+
+clear.addEventListener("click", () => {
+  todoList.innerHTML = "";
+});

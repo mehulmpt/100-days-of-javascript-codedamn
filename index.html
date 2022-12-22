@@ -3,46 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tip Calculator</title>
-    <!-- <script
+    <title>Document</title>
+    <script
       src="https://kit.fontawesome.com/1935d064dd.js"
       crossorigin="anonymous"
-    ></script> -->
+    ></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <section>
       <div class="container">
-        <div class="calc">
-          <h2>Tip calculator</h2>
-          <form action="">
-            <div>
-              <label for="">Bill:</label>
-              <input type="text" placeholder="$" class="bill" />
-            </div>
-            <div>
-              <label for="">Rate Service:</label>
-              <select name="" class="rate">
-                <option disabled selected value="0">
-                  -- Select an option --
-                </option>
-                <option value="0.15">15% - Excellent</option>
-                <option value="0.1">10% - Good</option>
-                <option value="0.05">5% - Fair</option>
-              </select>
-            </div>
-            <button type="button" class="btn">Calculate</button>
-            <p class="error">Please enter bill and rate service.</p>
+        <div class="add-item">
+          <form action="" onsubmit="return false">
+            <input type="text" placeholder="Add a Task" />
+            <button>Add</button>
           </form>
-
-          <div class="result">
-            <p class="tip">Tip Amount: $0</p>
-            <p class="total">Total Amount: $0</p>
-          </div>
         </div>
+        <!-- Ordered List -->
+        <h2>List of Tasks To Do</h2>
+        <hr />
+        <ol class="todo-list">
+          <!-- <li>
+            Task 1
+            <button><i class="fas fa-trash-alt"></i></button>
+          </li> -->
+        </ol>
+        <hr />
+        <button class="clear">Clear Tasks</button>
       </div>
     </section>
 
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script src="app.js"></script>
   </body>
 </html>
