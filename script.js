@@ -1,46 +1,61 @@
-const btns = document.querySelectorAll(".btn");
-const storeProducts = document.querySelectorAll(".store-product");
+const thumbnails = document.getElementsByClassName("thumbnail");
+const slider = document.getElementById("slider");
+const nextBtn = document.getElementById("slide-right");
+const prevBtn = document.getElementById("slide-left");
 
-for (let i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function (e) {
-    const current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
+nextBtn.addEventListener("click", () => {
+  scrollAmount = 0;
+  let slideTimer = setInterval(() => {
+    slider.scrollLeft += 10;
+    scrollAmount += 10;
+    if (scrollAmount >= 100) {
+      window.clearInterval(slideTimer);
+    }
+  }, 25);
+});
 
-    // Switch Tab content
-    const filter = e.target.dataset.filter;
-    // console.log(filter);
-    storeProducts.forEach((product) => {
-      if (filter === "all") {
-        product.style.display = "block";
-      } else if (product.classList.contains(filter)) {
-        product.style.display = "block";
-      } else {
-        product.style.display = "none";
-      }
-    });
-  });
+prevBtn.addEventListener("click", () => {
+  scrollAmount = 0;
+  let slideTimer = setInterval(() => {
+    slider.scrollLeft -= 10;
+    scrollAmount += 10;
+    if (scrollAmount >= 100) {
+      window.clearInterval(slideTimer);
+    }
+  }, 25);
+});
+
+// Slider Width values
+// function sw() {
+//   alert(slider.scrollWidth);
+// }
+// function sl() {
+//   alert(slider.scrollLeft);
+// }
+// function cw() {
+//   alert(slider.clientWidth);
+// }
+// function calc() {
+//   alert(slider.scrollWidth - slider.clientWidth);
+// }
+
+// Auto Play Function
+function autoPlay() {
+  if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 1) {
+    slider.scrollLeft = 0;
+  } else {
+    slider.scrollLeft += 1;
+  }
 }
 
-// SEARCH FILTER
-const search = document.getElementById("search");
-const productName = document.querySelectorAll(".product-details h2");
-const noResult = document.querySelector(".no-result");
+let play = setInterval(autoPlay, 10);
 
-search.addEventListener("keyup", filterProducts);
-
-function filterProducts(e) {
-  const text = e.target.value.toLowerCase();
-
-  productName.forEach((product) => {
-    const item = product.textContent;
-
-    if (item.toLowerCase().indexOf(text) != -1) {
-      product.parentElement.parentElement.style.display = "block";
-      noResult.style.display = "none";
-    } else {
-      product.parentElement.parentElement.style.display = "none";
-      noResult.style.display = "block";
-    }
+// Pause the slide on hover
+for (let i = 0; i < thumbnails.length; i++) {
+  thumbnails[i].addEventListener("mouseover", () => {
+    clearInterval(play);
+  });
+  thumbnails[i].addEventListener("mouseout", () => {
+    return (play = setInterval(autoPlay, 10));
   });
 }
