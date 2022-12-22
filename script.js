@@ -1,56 +1,22 @@
-const timer = document.querySelector(".time");
-const startT = document.querySelector(".start");
-const pauseT = document.querySelector(".pause");
-const resetT = document.querySelector(".reset");
-let [milliseconds, seconds, minutes, hours] = [0, 0, 0, 0];
-let t = null;
+const tabLinks = document.getElementsByClassName("tab-link");
+const allContent = document.querySelectorAll(".tab-content");
 
-startT.addEventListener("click", startTimer);
-pauseT.addEventListener("click", pauseTimer);
-resetT.addEventListener("click", resetTimer);
+for (let i = 0; i < tabLinks.length; i++) {
+  tabLinks[i].addEventListener("click", function (e) {
+    const current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
 
-function startTimer() {
-  if (t !== null) {
-    clearInterval(t);
-  }
-  t = setInterval(displayTime, 10);
-}
+    // Switch content
+    const filter = e.target.dataset.filter;
+    console.log(filter);
 
-function pauseTimer() {
-  clearInterval(t);
-}
-
-function resetTimer() {
-  clearInterval(t);
-  [milliseconds, seconds, minutes, hours] = [0, 0, 0, 0];
-  timer.innerHTML = "00 : 00 : 00 : 000";
-}
-
-// Display Timer
-function displayTime() {
-  milliseconds += 10;
-  if (milliseconds == 1000) {
-    milliseconds = 0;
-    seconds++;
-    if (seconds == 60) {
-      seconds = 0;
-      minutes++;
-      if (minutes == 60) {
-        minutes = 0;
-        hours++;
+    allContent.forEach((content) => {
+      if (content.classList.contains(filter)) {
+        content.style.display = "block";
+      } else {
+        content.style.display = "none";
       }
-    }
-  }
-
-  let h = hours < 10 ? "0" + hours : hours;
-  let m = minutes < 10 ? "0" + minutes : minutes;
-  let s = seconds < 10 ? "0" + seconds : seconds;
-  let ms =
-    milliseconds < 10
-      ? "00" + milliseconds
-      : milliseconds < 100
-      ? "0" + milliseconds
-      : milliseconds;
-
-  timer.innerHTML = `${h} : ${m} : ${s} : ${ms}`;
+    });
+  });
 }
