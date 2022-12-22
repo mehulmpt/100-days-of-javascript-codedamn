@@ -1,57 +1,52 @@
-const apiURL =
-  "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
+const formItems = document.getElementsByClassName("form-item");
+const button = document.getElementsByClassName("btn");
+const steps = document.getElementsByClassName("step");
 
-const searchAPI =
-  "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
+let currentFormItem = 0;
+formItems[currentFormItem].style.display = "block";
 
-const imgPATH = "https://image.tmdb.org/t/p/w1280";
-
-let moviesDiv = document.querySelector(".movies");
-let form = document.querySelector("form");
-let input = document.querySelector(".search");
-
-getMovies(apiURL);
-
-async function getMovies(url) {
-  const res = await fetch(url);
-  const data = await res.json();
-
-  console.log(data.results);
-  displayMovies(data.results);
+if (currentFormItem == 0) {
+  button[0].style.display = "none";
+  steps[0].style.backgroundColor = "#1e9df7";
 }
 
-// Display Movies
-function displayMovies(movies) {
-  moviesDiv.innerHTML = "";
+// Next Button
+button[1].addEventListener("click", () => {
+  currentFormItem++;
+  const prevFormItem = currentFormItem - 1;
 
-  movies.forEach((movie) => {
-    const div = document.createElement("div");
-    div.classList.add("movie");
-    div.innerHTML = `
-        <img src="${imgPATH + movie.poster_path}" alt="" />
+  if (currentFormItem > 0 && currentFormItem < 4) {
+    button[0].style.display = "inline-block";
+    formItems[currentFormItem].style.display = "block";
+    formItems[prevFormItem].style.display = "none";
+    steps[currentFormItem].style.backgroundColor = "#1e9df7";
 
-        <div class="details">
-          <h2 class="title">${movie.title}</h2>
-          <p class="rate">Rating: <span class="rating">${
-            movie.vote_average
-          }</span></p>
-          <p class="overview">
-            ${movie.overview}
-          </p>
-        </div>
-        `;
-    moviesDiv.appendChild(div);
-  });
-}
+    if (currentFormItem == 3) {
+      button[1].innerHTML = "Submit";
+    }
+  } else {
+    if (currentFormItem > 3) {
+      // Validate the form
+      alert("Form Sunmitted Successfully");
+    }
+  }
+});
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  moviesDiv.innerHTML = "";
+// Prev Button
+button[0].addEventListener("click", () => {
+  if (currentFormItem > 0) {
+    currentFormItem--;
+    const nextFormItem = currentFormItem + 1;
+    formItems[currentFormItem].style.display = "block";
+    formItems[nextFormItem].style.display = "none";
+    steps[nextFormItem].style.backgroundColor = "#cfd2d4";
 
-  const inputVal = input.value;
+    if (currentFormItem == 0) {
+      button[0].style.display = "none";
+    }
 
-  if (inputVal) {
-    getMovies(searchAPI + inputVal);
-    input.value = "";
+    if (currentFormItem < 3) {
+      button[1].innerHTML = "Next";
+    }
   }
 });
