@@ -7,8 +7,8 @@
   --light-blue: #005490;
   --color-primary: #9d0191;
   --color-sec: #db6400;
-  --color-grey: #eee;
-  --color-dark-grey: #222831;
+  --grey: #eee;
+  --dark-grey: #222831;
 }
 
 * {
@@ -41,79 +41,60 @@ img {
 }
 
 /* Start Here */
-body {
-  background: var(--color-dark-grey);
+section.main {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--grey);
 }
 
-.header {
-  margin: 2rem 0;
-  text-align: center;
+.fab-btn {
+  position: absolute;
+  right: 3rem;
+  bottom: 1.5rem;
+  width: 5.5rem;
+  height: 5.5rem;
+  background-color: #ff4081;
   color: var(--white);
-  border-bottom: 1px solid var(--color-grey);
-}
-
-h1 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  padding-bottom: 5px;
-}
-
-h1 span {
-  color: var(--color-sec);
-}
-
-.gallery-filter {
-  font-size: 1.4rem;
-  font-weight: 400;
-  text-transform: capitalize;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
 }
 
-.gallery-filter .active {
-  color: var(--color-sec);
-  font-weight: 700;
-  border-bottom: 2px solid var(--color-sec);
+.fab-btn i {
+  transition: all 0.3s;
 }
 
-.gallery-filter > * {
-  margin: 0 3px;
+.fab-btns .fab-btn {
+  width: 4rem;
+  height: 4rem;
+  right: 3.8rem;
+  bottom: 2.3rem;
+  font-size: 1.5rem;
 }
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-  grid-gap: 1rem;
+.fab-btns.show .fab-btn:nth-child(1) {
+  bottom: 8rem;
+  background: #3b5999;
+}
+/* Add 5rem to the bottom value */
+.fab-btns.show .fab-btn:nth-child(2) {
+  bottom: 13rem;
+  background: #55acee;
+}
+.fab-btns.show .fab-btn:nth-child(3) {
+  bottom: 18rem;
+  background: #25d366;
+}
+.fab-btns.show .fab-btn:nth-child(4) {
+  bottom: 23rem;
+  background: var(--color-primary);
 }
 
-.gallery .image {
-  border: 1px solid var(--color-grey);
-  border-radius: 3px;
-  overflow: hidden;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.5s;
-  animation: grow 0.5s ease-in-out;
-}
-
-@keyframes grow {
-  0% {
-    transform: scale(0.8);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.gallery .image:hover::after {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  content: "\f00e";
-  font-size: 2rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--color-sec);
+.fab-btns.show + .fab-btn i {
+  transform: rotate(135deg);
 }
