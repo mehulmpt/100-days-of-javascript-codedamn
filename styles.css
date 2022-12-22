@@ -38,73 +38,51 @@ img {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-/* Start Here */
-.slider {
-  width: 100%;
-  height: 70vh;
-  position: relative;
-  overflow: hidden;
-}
-
-.slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transform: translateX(-50%);
-  transition: all 0.5s ease;
-}
-
-.slide img {
-  height: 100%;
-}
-
-.current {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.content {
-  position: absolute;
-  top: 7rem;
-  left: 5rem;
-  opacity: 0;
-  width: 55%;
+.counter-div {
+  width: 40rem;
+  border: 1px solid var(--grey);
+  padding: 1rem;
+  background-color: var(--light-blue);
   color: var(--white);
-  padding: 3rem;
-  transform: translateX(3rem);
+  text-align: center;
+  border-radius: 5px;
 }
 
-.current .content {
-  opacity: 1;
-  transform: translateX(0);
-  transition: all 0.5s ease;
+.counter-div > * {
+  margin-bottom: 2rem;
+}
+
+.count {
+  font-size: 4rem;
+  border: 1px solid var(--white);
+  padding: 0 1rem-;
 }
 
 .buttons button {
-  border: 2px solid var(--white);
-  background-color: transparent;
+  padding: 1rem;
+  margin: 0 1rem;
+  font-size: 1.5rem;
   color: var(--white);
+  font-weight: 700;
+  border: none;
+  outline: none;
+  border-radius: 3px;
   cursor: pointer;
-  height: 2rem;
-  width: 2rem;
-  border-radius: 50%;
-  position: absolute;
-}
-.buttons button:hover {
-  background-color: var(--white);
-  color: #777;
 }
 
-.next {
-  top: 35%;
-  right: 1.5rem;
+button.subtract {
+  background-color: orangered;
 }
-.prev {
-  top: 35%;
-  left: 1.5rem;
+button.reset {
+  background-color: var(--white);
+  color: var(--black);
+}
+button.add {
+  background-color: green;
 }
