@@ -7,8 +7,8 @@
   --light-blue: #005490;
   --color-primary: #9d0191;
   --color-sec: #db6400;
-  --grey: #eee;
-  --dark-grey: #222831;
+  --color-grey: #eee;
+  --color-dark-grey: #222831;
 }
 
 * {
@@ -19,7 +19,6 @@
 
 html {
   font-size: 10px;
-  /* scroll-behavior: smooth; */
 }
 
 body {
@@ -41,87 +40,46 @@ img {
   padding: 0 20px;
 }
 
-/* HEADER */
-/* HEADER */
-/* HEADER */
-header {
+/* Start Here */
+.main {
   width: 100%;
-  /* background-color: var(--dark-grey); */
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 2rem 0;
-  z-index: 111;
-  transition: all 0.5s;
-}
-
-header.sticky {
-  background-color: var(--grey);
-  /* border-bottom: 1px solid #777; */
-  padding: 1rem 0;
-}
-
-nav {
-  /* height: 7.5rem; */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.logo {
-  font-size: 4.5rem;
-  color: var(--color-sec);
-}
-
-.nav-list {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.nav-list li {
-  list-style: none;
-  margin: 0 1.5rem;
-}
-
-.nav-list li a {
-  color: var(--white);
-  font-size: 1.6rem;
-  text-decoration: none;
-}
-
-header.sticky li a {
-  color: var(--dark-grey);
-}
-
-/* New Section CSS */
-section.header {
-  width: 100%;
-  height: 90vh;
-  background: url(./images/bg-girl.jpg) center no-repeat;
-  background-size: cover;
-}
-
-/* Section */
-section {
-  padding: 5rem 0;
-}
-
 .box {
-  border: 1px solid var(--grey);
-  padding: 2rem;
+  width: 45rem;
+  text-align: center;
+  padding: 0;
 }
 
-h2 {
-  color: var(--color-primary);
-  font-size: 3rem;
+.time {
+  width: 100%;
+  font-size: 4rem;
+  background-color: var(--color-primary);
+  padding: 4rem 5px;
+  border-radius: 3px;
+  font-family: "Roboto mono", monospace;
+  color: var(--white);
+  margin-bottom: 3rem;
 }
-
-.flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+button {
+  padding: 5px 1rem;
+  border: none;
+  outline: none;
+  margin: 0 5px;
+  cursor: pointer;
+  color: var(--white);
+  border-radius: 3px;
 }
-
-.flex > * {
-  margin: 3px;
+.start {
+  background-color: green;
+}
+.pause {
+  background-color: var(--color-sec);
+}
+.reset {
+  background-color: red;
 }
