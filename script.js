@@ -1,82 +1,57 @@
-const searchForm = document.querySelector("#search-form");
-const searchInput = document.querySelector("#search-input");
+let pounds = document.querySelector(".pounds"),
+  kilograms = document.querySelector(".kilograms"),
+  grams = document.querySelector(".grams"),
+  ounces = document.querySelector(".ounces"),
+  form = document.querySelector("form");
 
-const speechBtnDiv = document.querySelector("#speech-btn");
-const micBtn = document.querySelector(".btn .fas");
-const instruction = document.querySelector(".instruction");
+form.addEventListener("input", convertWeight);
 
-const speechRecognition =
-  window.SpeechRecognition || window.webkitSpeechRecognition;
-
-// Check for browser support
-if (speechRecognition) {
-  console.log("Speech Recognition Supported");
-
-  const recognition = new speechRecognition();
-
-  micBtn.addEventListener("click", micBtnClicked);
-  function micBtnClicked(e) {
-    e.preventDefault();
-    if (micBtn.classList.contains("fa-microphone")) {
-      recognition.start();
-    } else {
-      recognition.stop();
-    }
+function convertWeight(e) {
+  if (e.target.classList.contains("pounds")) {
+    let x = e.target.value;
+    kilograms.value = (x / 2.2046).toFixed(2);
+    grams.value = (x / 0.0022046).toFixed(2);
+    ounces.value = (x * 16).toFixed(2);
   }
 
-  //   Start Speech Recognition
-  recognition.addEventListener("start", () => {
-    micBtn.classList.remove("fa-microphone");
-    micBtn.classList.add("fa-microphone-slash");
-    instruction.textContent = "Recording... Press Ctrl + m to stop.";
-    searchInput.focus();
-    console.log("Speech Recognition Enabled");
-  });
+  if (e.target.classList.contains("kilograms")) {
+    let x = e.target.value;
+    pounds.value = x * 2.2046;
+    grams.value = x * 1000;
+    ounces.value = x * 35.274;
+  }
 
-  //   Stop Speech Recognition
-  recognition.addEventListener("end", () => {
-    micBtn.classList.remove("fa-microphone-slash");
-    micBtn.classList.add("fa-microphone");
-    instruction.textContent = "Press Ctrl + x or Click the Mic icon to start";
-    searchInput.focus();
-    console.log("Speech Recognition Disabled");
-  });
+  if (e.target.classList.contains("grams")) {
+    let x = e.target.value;
+    kilograms.value = x / 1000;
+    pounds.value = x * 0.0022046;
+    ounces.value = x * 0.035274;
+  }
 
-  //   Get Result of speech Recognition
-  recognition.continuous = true;
-  // let content = "";
-  recognition.addEventListener("result", (e) => {
-    console.log(e);
-    const current = e.resultIndex;
-    const transcript = e.results[current][0].transcript;
-
-    if (transcript.toLowerCase().trim() === "stop recording") {
-      recognition.stop();
-    } else if (!searchInput.value) {
-      searchInput.value = transcript;
-    } else {
-      if (transcript.toLowerCase().trim() === "search") {
-        searchForm.submit();
-      } else if (transcript.toLowerCase().trim() === "reset form") {
-        searchInput.value = "";
-      } else {
-        searchInput.value = transcript;
-      }
-    }
-  });
-
-  // Add keyboard Event Listener
-  document.addEventListener("keydown", (e) => {
-    if (e.ctrlKey && e.key === "x") {
-      // e.shiftKey
-      recognition.start();
-    }
-    if (e.ctrlKey && e.key === "m") {
-      // e.shiftKey
-      recognition.stop();
-    }
-  });
-} else {
-  console.log("Speech Recognition Not Supported");
-  speechBtnDiv.style.visibility = "hidden";
+  if (e.target.classList.contains("ounces")) {
+    let x = e.target.value;
+    kilograms.value = x / 35.274;
+    grams.value = x / 0.035274;
+    pounds.value = x * 0.0625;
+  }
 }
+
+// -- From pounds to --
+// kilograms = x / 2.2046;
+// grams = x / 0.0022046;
+// ounces = x * 16;
+
+// -- From Kilogram to --
+// pounds = x * 2.2046;
+// grams = x * 1000;
+// ounces = x * 35.274;
+
+// -- From Gram to --
+// kilograms = x / 1000;
+//   pounds = x * 0.0022046;
+//   ounces = x * 0.035274;
+
+// -- From Ounce to --
+// kilograms = x / 35.274;
+// grams = x / 0.035274;
+// pounds = x * 0.0625;
