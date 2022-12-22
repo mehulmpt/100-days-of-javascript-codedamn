@@ -1,49 +1,108 @@
-const empty = "",
-  uCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-  lCase = "abcdefghijklmnopqrstuvwxyz",
-  number = "0123456789",
-  symbol = "!@#$%^&*=-_";
-
-const pLength = document.getElementById("p-length"),
-  upperCase = document.getElementById("p-uppercase"),
-  lowerCase = document.getElementById("p-lowercase"),
-  pNumber = document.getElementById("p-number"),
-  pSymbol = document.getElementById("p-symbol"),
-  submit = document.getElementById("submit"),
+let state,
   password = document.getElementById("password"),
-  copy = document.getElementById("copy");
+  passwordStrength = document.getElementById("password-strength"),
+  lowUpperCase = document.querySelector(".low-upper-case i"),
+  number = document.querySelector(".number i"),
+  specialChar = document.querySelector(".special-char i"),
+  eightChar = document.querySelector(".eight-char i"),
+  showPassword = document.querySelector(".show-pass"),
+  eyeIcon = document.querySelector("#eye");
 
-submit.addEventListener("click", () => {
-  let initialPassword = empty;
-  // ADD CHARACTER IF AN OPTION IS CHECKED
-  upperCase.checked ? (initialPassword += uCase) : "";
-  lowerCase.checked ? (initialPassword += lCase) : "";
-  pNumber.checked ? (initialPassword += number) : "";
-  pSymbol.checked ? (initialPassword += symbol) : "";
-
-  password.value = generatePassword(pLength.value, initialPassword);
+showPassword.addEventListener("click", toggle);
+eyeIcon.addEventListener("click", toggleEye);
+password.addEventListener("keyup", () => {
+  let pass = password.value;
+  checkStrength(pass);
 });
 
-function generatePassword(l, initialPassword) {
-  let pass = "";
-  for (let i = 0; i < l; i++) {
-    pass += initialPassword.charAt(
-      Math.floor(Math.random() * initialPassword.length)
-    );
+// Toggle password visibility
+function toggle() {
+  if (state) {
+    password.setAttribute("type", "password");
+    state = false;
+  } else {
+    password.setAttribute("type", "text");
+    state = true;
   }
-  return pass;
 }
 
-// let str = "Hello";
-// let result = str.charAt(0); // H
+// Toggle icon in password field
+function toggleEye() {
+  eyeIcon.classList.toggle("fa-eye-slash");
+}
 
-// COPY FUNCTION
-copy.addEventListener("click", () => {
-  if (password.value == "") {
-    alert("Please generate a password");
+// Check Password Strength
+function checkStrength(password) {
+  let strength = 0;
+
+  // check Lower and Uppercase
+  if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
+    strength += 1;
+    addCheck(lowUpperCase);
   } else {
-    password.select();
-    document.execCommand("copy");
-    alert("Password has been copied to clipboard");
+    removeCheck(lowUpperCase);
   }
-});
+  // Check For Numbers
+  if (password.match(/([0-9])/)) {
+    strength += 1;
+    addCheck(number);
+  } else {
+    removeCheck(number);
+  }
+  // Check For Special char
+  if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
+    strength += 1;
+    addCheck(specialChar);
+  } else {
+    removeCheck(specialChar);
+  }
+  // Check if password is > 7
+  if (password.length > 7) {
+    strength += 1;
+    addCheck(eightChar);
+  } else {
+    removeCheck(eightChar);
+  }
+
+  // passwordStrength.classList.remove("pb-danger", "pb-warning", "pb-primary", "pb-success");
+  // passwordStrength.classList.add("");
+  // Update progress bar
+  if (strength == 1) {
+    removePassStrength();
+    passwordStrength.classList.add("pb-danger");
+    passwordStrength.style = "width: 25%";
+  } else if (strength == 2) {
+    removePassStrength();
+    passwordStrength.classList.add("pb-warning");
+    passwordStrength.style = "width: 50%";
+  } else if (strength == 3) {
+    removePassStrength();
+    passwordStrength.classList.add("pb-primary");
+    passwordStrength.style = "width: 75%";
+  } else if (strength == 4) {
+    removePassStrength();
+    passwordStrength.classList.add("pb-success");
+    passwordStrength.style = "width: 100%";
+  }
+}
+
+// Remove password strength classes
+function removePassStrength() {
+  passwordStrength.classList.remove(
+    "pb-danger",
+    "pb-warning",
+    "pb-primary",
+    "pb-success"
+  );
+}
+
+// Add Check Icon
+function addCheck(charRequired) {
+  charRequired.classList.remove("fa-circle");
+  charRequired.classList.add("fa-check");
+}
+// Remove Check Icon
+function removeCheck(charRequired) {
+  charRequired.classList.remove("fa-check");
+  charRequired.classList.add("fa-circle");
+}
