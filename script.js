@@ -1,28 +1,18 @@
-(function () {
-  const items = document.querySelectorAll(".timeline li");
+const word = document.querySelector(".input-text");
+const btn = document.querySelector(".btn");
+const result = document.querySelector(".result");
 
-  function isElementInViewport(el) {
-    let rect = el.getBoundingClientRect();
-    return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <=
-        (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-  }
+btn.addEventListener("click", countVowel);
 
-  function slideIn() {
-    for (let i = 0; i < items.length; i++) {
-      if (isElementInViewport(items[i])) {
-        items[i].classList.add("slide-in");
-      } else {
-        items[i].classList.remove("slide-in");
-      }
+function countVowel() {
+  let vowelCount = 0;
+  let wordVal = word.value.toLowerCase();
+
+  for (let i = 0; i < wordVal.length; i++) {
+    let letter = wordVal[i];
+    if (letter.match(/([a,e,i,o,u])/)) {
+      vowelCount++;
     }
   }
-
-  window.addEventListener("load", slideIn);
-  window.addEventListener("scroll", slideIn);
-  window.addEventListener("resize", slideIn);
-})();
+  result.innerHTML = `${word.value.toUpperCase()} has ${vowelCount} vowels`;
+}
