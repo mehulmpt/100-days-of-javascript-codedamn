@@ -1,65 +1,29 @@
-let today = new Date();
+const keys = document.querySelectorAll(".key");
+const note = document.querySelector(".key-pressed");
 
-function getDate(d) {
-  let months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+window.addEventListener("keydown", playNote);
 
-  let day = days[d.getDay()];
-  let date = d.getDate();
-  let month = months[d.getMonth()];
-  let year = d.getFullYear();
+function playNote(e) {
+  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+  const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
 
-  return `${day}, ${date} ${month} ${year}`;
+  if (!key) return;
+
+  const keyNote = key.dataset.note;
+  //   console.log(keyNote);
+
+  key.classList.add("playing");
+  note.innerHTML = keyNote;
+  audio.currentTime = 0;
+  audio.play();
 }
 
-const date = document.querySelector(".date");
-date.innerHTML = getDate(today);
+// Remove playing class
+keys.forEach((key) => {
+  key.addEventListener("transitionend", removeTransition);
+});
 
-// Get Time
-function showTime() {
-  let date = new Date();
-
-  let h = date.getHours();
-  let m = date.getMinutes();
-  let s = date.getSeconds();
-  let session = "AM";
-
-  if (h == 0) {
-    h = 12;
-  }
-  if (h > 12) {
-    h = h - 12;
-    session = "PM";
-  }
-
-  // Append 0 to single digit
-  h = h < 10 ? "0" + h : h;
-  m = m < 10 ? "0" + m : m;
-  s = s < 10 ? "0" + s : s;
-
-  let time = `${h}:${m}:${s} ${session}`;
-  document.querySelector(".time").innerHTML = time;
+function removeTransition(e) {
+  if (e.propertyName !== "transform") return;
+  this.classList.remove("playing");
 }
-
-setInterval(showTime, 1000);
