@@ -104,6 +104,11 @@ h2 {
   margin: 3px;
 }
 
+/* Hide Submenu */
+.submenu-three {
+  display: none;
+}
+
 /* RESPONSIVE MENU */
 /* RESPONSIVE MENU */
 /* RESPONSIVE MENU */
@@ -166,5 +171,41 @@ h2 {
   .nav-list li a:hover {
     color: var(--color-sec);
     margin-left: 1rem;
+  }
+
+  /* Submenu CSS */
+  .three {
+    position: relative;
+  }
+
+  .fa-angle-right {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    font-size: 2rem;
+    transform: translateY(-50%);
+  }
+
+  .nav-list li a {
+    display: block;
+  }
+
+  .nav-list li a:hover ~ .fa-angle-right {
+    color: var(--color-sec);
+  }
+
+  .submenu-three {
+    transform: translateX(-100%);
+    transition: all 0.5s;
+  }
+
+  .submenu-three .back {
+    display: flex;
+  }
+
+  .fa-arrow-left {
+    font-size: 1.5rem;
+    padding-top: 5px;
+    color: var(--color-sec);
   }
 }

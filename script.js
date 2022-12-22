@@ -31,8 +31,24 @@ const hideMenu = () => {
   hamburger.style.display = "block";
   menuWrapper.style.transform = "translateX(-200%)";
   menu.style.transform = "translateX(200%)";
+  subMenuThree.style.transform = "translateX(-100%)";
 };
 
 hamburger.addEventListener("click", showMenu);
 close.addEventListener("click", hideMenu);
 menuWrapper.addEventListener("click", hideMenu);
+
+// Submenu Section
+const thirdLink = document.querySelector(".third-link");
+const back = document.querySelector(".back-to-menu");
+const subMenuThree = document.querySelector(".submenu-three");
+
+thirdLink.addEventListener("click", () => {
+  menu.style.transform = "translateX(-100%)";
+  subMenuThree.style.transform = "translateX(0)";
+});
+
+back.addEventListener("click", () => {
+  menu.style.transform = "translateX(0)";
+  subMenuThree.style.transform = "translateX(-100%)";
+});
